@@ -1,0 +1,14 @@
+# stuff I did
+
+
+## run server
+python manage.py runserver
+
+
+## migrate model changes
+python manage.py makemigrations webapp
+python manage.py migrate
+
+
+## export database
+python manage.py dumpdata -o etd.json --exclude=auth --exclude=contenttypes
