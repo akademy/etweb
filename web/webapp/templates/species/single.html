@@ -1,10 +1,26 @@
-{% if species %}
+{% extends "base.html" %}
+
+{% block title %}
+	{% if species %}
+		species: {{ species.common_name }}
+	{% else %}
+		species: Not found
+	{% endif %}
+{% endblock title %}
+
+
+{% block main %}
 	<section>
-		<h1>{{ species.common_name }}</h1>
-		<h2>{{ species.scientific_name }}</h2>
-		<p>{{ species.description }}</p>
+		<h1>Species {{ species.common_name }}</h1>
+	{% if species %}
+		
+		<p>Common Name: {{ species.common_name }}</p>
+		<p>Scientific Name: {{ species.scientific_name }}</p>
+		<p>Description: {{ species.description }}</p>
+	{% else %}
+		{# This should never be used as it should be a 404 #}
+		<p>Error: Species not found.</p>
+	{% endif %}
+
 	</section>
-{% else %}
-	<!-- This should never be used as it should be a 404 -->
-	<p>Error: Species Unavailable.</p>
-{% endif %}
+{% endblock %}

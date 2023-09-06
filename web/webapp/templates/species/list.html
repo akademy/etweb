@@ -1,9 +1,20 @@
-{% if species_list %}
-	<ul>
-		{% for species in species_list %}
-			<li><a href="/species/{{ species.id}}/">{{ species.common_name }}</a> ({{ species.scientific_name }})</li>
-		{% endfor %}
-	</ul>
-{% else %}
-	<p>No species are available.</p>
-{% endif %}
+{% extends "base.html" %}
+
+{% block title %}Species List{% endblock title %}
+
+{% block main %}
+	<section>
+		<h1>Species List</h1>
+	
+		{% if species_list %}
+			<ul>
+				{% for species in species_list %}
+					<li><a href="/species/{{ species.id}}/">{{ species.common_name }}</a> ({{ species.scientific_name }})</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No species are available.</p>
+		{% endif %}
+	
+	</section>
+{% endblock %}

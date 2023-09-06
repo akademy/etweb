@@ -1,10 +1,7 @@
 from django.shortcuts import render
+from django.http import Http404
 
 from ..models import Species
-
-
-#def index(request):
-#	return HttpResponse("Hello, world. You're at the home.")
 
 
 def species(request):
@@ -16,8 +13,13 @@ def species(request):
 
 
 def species_single(request, species_id):
-	species = Species.objects.get(pk=species_id)
+	try:
+		species = Species.objects.get(pk=species_id)
+	except Species.DoesNotExist:
+		raise Http404("Species does not exist")
+
 	context = {
 		"species": species,
 	}
 	return render(request, "species/single.html", context)
+
