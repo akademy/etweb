@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+{% extends "with-sidebar.html" %}
+
 
 {% block title %}
 	{% if species %}
@@ -9,18 +10,28 @@
 {% endblock title %}
 
 
-{% block main %}
-	<section>
-		<h1>Species {{ species.common_name }}</h1>
+{% block header %}
 	{% if species %}
-		
-		<p>Common Name: {{ species.common_name }}</p>
-		<p>Scientific Name: {{ species.scientific_name }}</p>
-		<p>Description: {{ species.description }}</p>
+		<h2>Species - {{ species.common_name }}</h2>
+		<p>{{ species.scientific_name }}</p>
 	{% else %}
-		{# This should never be used as it should be a 404 #}
-		<p>Error: Species not found.</p>
+		<h2>Species - Not found</h2>
 	{% endif %}
+{% endblock header %}
 
+
+{% block content %}
+	
+	<section>
+		{% if species %}
+			<p>Common Name: <strong>{{ species.common_name }}</strong></p>
+			<p>Scientific Name: <strong>{{ species.scientific_name }}</strong></p>
+			<p>{{ species.description }}</p>
+		{% else %}
+			{# This should never be used as it should be a 404 #}
+			<p>Error: Species not found.</p>
+		{% endif %}
+	
+		<p>Go to <a href="/species/">List Species</a></p>
 	</section>
-{% endblock %}
+{% endblock content %}

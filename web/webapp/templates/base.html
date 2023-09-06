@@ -2,23 +2,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="{% static 'normal.css' %}">
 	<title>Wildlife Monitor - {% block title %}{% endblock %}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<!--[if lte IE 8]><script src="{% static 'css/ie/html5shiv.js' %}></script><![endif]-->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+	<script src="{% static 'js/jquery.scrollgress.min.js' %}"></script>
+	<script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
+	<script src="{% static 'js/jquery.slidertron.min.js' %}"></script>
+	<script src="{% static 'js/skel.min.js' %}"></script>
+	<script src="{% static 'js/skel-layers.min.js' %}"></script>
+	<script src="{% static 'js/init.js' %}"></script>
+	<noscript>
+		<link rel="stylesheet" href="{% static 'css/skel.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style-xlarge.css' %}" />
+	</noscript>
+	<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'css/ie/v9.css' %}" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'css/ie/v8.css' %}" /><![endif]-->
 </head>
 
-<body>
-<h1>Wildlife Monitor</h1>
-<div id="sidebar">
-	{% block sidebar %}
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/species/">Species</a></li>
-		</ul>
-	{% endblock %}
-</div>
+<body class="{% block bodyclass %}{% endblock %}">
 
-<div id="content">
+<!-- Header -->
+	<header id="header" class="skel-layers-fixed">
+		<h1><a href="/">Wildlife Monitor</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/search/">Search</a></li>
+				<li>
+					<a href="" class="icon fa-angle-down">Explore</a>
+					<ul>
+						<li><a href="/species/">Species</a></li>
+						<li>
+							<a href="">Sub menu</a>
+							<ul>
+								<li><a href="/species/">item 1</a></li>
+								<li><a href="/species/">item 2</a></li>
+								<li><a href="/species/">item 3</a></li>
+								<li><a href="/species/">item 4</a></li>
+							</ul>
+						</li>
+						<li><a href="/about/">Search</a></li>
+					</ul>
+				</li>
+				<li><a href="/about/">About</a></li>
+			</ul>
+		</nav>
+	</header>
+
 	{% block main %}{% endblock %}
-</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		
+		<ul class="icons">
+			{%  comment %}
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+			<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+			<li><a href="#" class="icon fa-envelope"><span class="label">Envelope</span></a></li>
+			{% endcomment %}
+		</ul>
+		
+		<ul class="menu">
+			{%  comment %}
+			<li><a href="#">FAQ</a></li>
+			<li><a href="#">Terms of Use</a></li>
+			<li><a href="#">Privacy</a></li>
+			{% endcomment %}
+			<li><a href="/about">About</a></li>
+			<li>Contact: Mat Wilcoxson</li>
+		</ul>
+		
+		<section class="copyright">
+			<p>&copy; Copyright. All rights reserved./p>
+			<p>
+				Website by <a href="http://www.akademy.co.uk">J. Matthew B. Wilcoxson.</a><br/>
+				Design by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
+			</p>
+		</section>
+		
+		
+	</footer>
+
 </body>
+
+
+
 </html>

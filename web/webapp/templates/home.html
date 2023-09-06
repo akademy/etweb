@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 
+{# For different style on front page #}
+{% block bodyclass %}landing{% endblock %}
+
 {% block main %}
-	
-<h1>Welcome</h1>
-<p>This is searchable list of species located at a monitoring station near Cliften Hampden, Oxfordshire, UK</p>
-	
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner">
+			<h2>Wildlife Monitor</h2>
+			<p>A searchable list of species located at a monitoring stations <br/>(currently one near Cliften Hampden, Oxfordshire, UK)</p>
+			<ul class="actions">
+				<li><a href="search" class="button big scrolly">Explore</a></li>
+				<li><a href="search" class="button big scrolly">Search</a></li>
+			</ul>
+		</div>
+	</section>
+
 {% endblock main %}

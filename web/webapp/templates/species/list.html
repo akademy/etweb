@@ -1,11 +1,14 @@
-{% extends "base.html" %}
+{% extends "with-sidebar.html" %}
 
 {% block title %}Species List{% endblock title %}
 
-{% block main %}
+{% block header %}
+	<h2>Species List</h2>
+	<p>Listing all species catalogued</p>
+{% endblock header %}
+
+{% block content %}
 	<section>
-		<h1>Species List</h1>
-	
 		{% if species_list %}
 			<ul>
 				{% for species in species_list %}
@@ -17,4 +20,4 @@
 		{% endif %}
 	
 	</section>
-{% endblock %}
+{% endblock content %}
