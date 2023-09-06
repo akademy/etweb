@@ -1,0 +1,10 @@
+{% if species %}
+	<section>
+		<h1>{{ species.common_name }}</h1>
+		<h2>{{ species.scientific_name }}</h2>
+		<p>{{ species.description }}</p>
+	</section>
+{% else %}
+	<!-- This should never be used as it should be a 404 -->
+	<p>Error: Species Unavailable.</p>
+{% endif %}

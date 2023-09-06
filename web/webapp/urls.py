@@ -1,7 +1,10 @@
 from django.urls import path
 
-from . import views
+from .views import species
+from .views import home
 
 urlpatterns = [
-	path("", views.index, name="index"),
+	path("", home.index, name="index"),
+	path("species/", species.species, name="species"),
+	path("species/<int:species_id>/", species.species_single, name="species"),
 ]
