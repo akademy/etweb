@@ -10,5 +10,10 @@ python manage.py makemigrations webapp
 python manage.py migrate
 
 
-## export database
-python manage.py dumpdata -o etd.json --exclude=auth --exclude=contenttypes
+## database
+### export database
+python manage.py dumpdata -o wm.database.dummy.json --exclude=auth --exclude=contenttypes
+
+### import
+python manage.py migrate
+python manage.py loaddata "path/to/fixture/file"
