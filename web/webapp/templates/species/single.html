@@ -21,17 +21,33 @@
 
 
 {% block content %}
-	
-	<section>
-		{% if species %}
+	<p><a href="/species/">All Species</a> | <a href="/species/search/">Search Species</a> </p>
+
+	{% if species %}
+		<section>
+			<h1>Species Info</h1>
 			<p>Common Name: <strong>{{ species.common_name }}</strong></p>
 			<p>Scientific Name: <strong>{{ species.scientific_name }}</strong></p>
 			<p>{{ species.description }}</p>
-		{% else %}
-			{# This should never be used as it should be a 404 #}
-			<p>Error: Species not found.</p>
-		{% endif %}
-	
-		<p>Go to <a href="/species/">List Species</a></p>
-	</section>
+		
+		</section>
+		
+		<section>
+			<h1>Detections</h1>
+			{% if detections %}
+				<ul>
+					{% for d in detections %}
+						<li><a href="/detections/{{ d.id}}/">{{ d.date }}</a></li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				{# This should never be used as it should be a 404 #}
+				<p>No detections found. Which is odd.</p>
+			{% endif %}
+		</section>
+		
+	{% else %}
+		{# This should never be used as it should be a 404 #}
+		<p>Error: Species not found.</p>
+	{% endif %}
 {% endblock content %}
