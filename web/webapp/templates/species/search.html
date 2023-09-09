@@ -1,0 +1,61 @@
+{% extends "with-sidebar.html" %}
+
+{% block title %}Species List{% endblock title %}
+
+{% block header %}
+	<h2>Species Search</h2>
+	<p>Species search results</p>
+{% endblock header %}
+
+{% block content %}
+	
+	<section>
+		<h1>Search</h1>
+		Search in Common name and Scientific name
+		<form class="d-flex" role="search" method="POST" action="{% url 'species-search' %}">
+			<input
+					class="form-control me-2"
+					type="search"
+					placeholder="Search for something"
+					name="search_query"
+					required aria-label="Search"
+					value="{{query}}"
+			>
+			<button class="btn btn-outline-success" type="submit">Search</button>
+			{% csrf_token %}
+		</form>
+	</section>
+
+	<section>
+	<h1>Results</h1>
+	{% if query %}
+		<p><strong>Found: {{ species|length}} species</strong></p>
+				<!-- loop through search query -->
+				{% for s in species %}
+					<div>
+						<!-- return search query -->
+						<p>
+							<a href="/species/{{ species.id }}/">{{ s.common_name }}</a><br/>
+							{{ s.scientific_name }}
+						</p>
+					</div>
+				{% endfor %}
+	{% else %}
+		<!-- return a message if the user does not enter a search query -->
+		<h2>Please enter a search query</h2>
+	{% endif %}
+	</section>
+	
+	<section>
+		{% if species_list %}
+			<ul>
+				{% for species in species_list %}
+					<li><a href="/species/{{ species.id}}/">{{ species.common_name }}</a> ({{ species.scientific_name }})</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No species are available.</p>
+		{% endif %}
+	
+	</section>
+{% endblock content %}
