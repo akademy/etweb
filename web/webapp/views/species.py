@@ -33,7 +33,7 @@ def search(request):
 	# Check if the request is a post request.
 	if request.method == 'POST':
 		# Retrieve the search query entered by the user
-		search_query = request.POST['search_query']
+		search_query = request.POST['query']
 		# Filter your model by the search query
 		species = Species.objects.filter(Q(common_name__icontains=search_query) | Q(scientific_name__icontains=search_query))
 		return render(request, 'species/search.html', {'query': search_query, 'species': species})

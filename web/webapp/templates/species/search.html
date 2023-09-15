@@ -9,53 +9,45 @@
 
 {% block content %}
 	
-	<section>
-		<h1>Search</h1>
-		Search in Common name and Scientific name
-		<form class="d-flex" role="search" method="POST" action="{% url 'species-search' %}">
-			<input
-					class="form-control me-2"
-					type="search"
-					placeholder="Search for something"
-					name="search_query"
-					required aria-label="Search"
-					value="{{query}}"
-			>
-			<button class="btn btn-outline-success" type="submit">Search</button>
-			{% csrf_token %}
-		</form>
-	</section>
-
-	<section>
-	<h1>Results</h1>
-	{% if query %}
-		<p><strong>Found: {{ species|length}} species</strong></p>
-				<!-- loop through search query -->
-				{% for s in species %}
-					<div>
-						<!-- return search query -->
-						<p>
-							<a href="/species/{{ species.id }}/">{{ s.common_name }}</a><br/>
-							{{ s.scientific_name }}
-						</p>
-					</div>
-				{% endfor %}
-	{% else %}
-		<!-- return a message if the user does not enter a search query -->
-		<h2>Please enter a search query</h2>
-	{% endif %}
-	</section>
+	<p><a href="/species/">All Species</a> | Search Species </p>
 	
 	<section>
-		{% if species_list %}
-			<ul>
-				{% for species in species_list %}
-					<li><a href="/species/{{ species.id}}/">{{ species.common_name }}</a> ({{ species.scientific_name }})</li>
+		<h2>Search</h2>
+		<p class="tight">Search a species common name and scientific name</p>
+		<form class="d-flex" role="search" method="POST" action="{% url 'species-search' %}">
+			<div class="row uniform">
+				<div class="8u 12u(3)">
+					<input
+							class="form-control me-2"
+							type="text"
+							placeholder="Search common name, scientific name"
+							name="query"
+							required aria-label="Search"
+							value="{{query}}"
+					>
+				</div>
+				<div class="4u 12u(3)">
+					<ul class="actions">
+						<li><input type="submit" value="Search"></li>
+					</ul>
+				</div>
+			</div>
+			{% csrf_token %}
+		</form>
+	
+		{% if query %}
+			<p>Found <strong>{{ species|length}}</strong> species matching your search:</p>
+			<ul class="alt">
+				{% for s in species %}
+					<li><p>
+							<a href="/species/{{ s.id }}/">{{ s.common_name }}</a><br/>
+							{{ s.scientific_name }}
+					</p></li>
 				{% endfor %}
 			</ul>
 		{% else %}
-			<p>No species are available.</p>
+			<h2>Please enter a search query, above</h2>
 		{% endif %}
-	
 	</section>
+	
 {% endblock content %}
