@@ -1,4 +1,4 @@
-{% extends "with-sidebar.html" %}
+{% extends "species/sidebar.html" %}
 
 {% block title %}Species List{% endblock title %}
 
@@ -8,10 +8,9 @@
 {% endblock header %}
 
 {% block content %}
-	<p>All Species | <a href="/species/search/">Search Species</a></p>
-	
 	<section>
 		{% if species_list %}
+			<p>Found {{ species_list | length }} species.</p>
 			<ul>
 				{% for species in species_list %}
 					<li><a href="/species/{{ species.id}}/">{{ species.common_name }}</a> ({{ species.scientific_name }})</li>

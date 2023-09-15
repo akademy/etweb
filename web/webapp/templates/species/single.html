@@ -1,4 +1,4 @@
-{% extends "with-sidebar.html" %}
+{% extends "species/sidebar.html" %}
 
 
 {% block title %}
@@ -12,7 +12,7 @@
 
 {% block header %}
 	{% if species %}
-		<h2>Species - {{ species.common_name }}</h2>
+		<h2>Species: {{ species.common_name }}</h2>
 		<p>{{ species.scientific_name }}</p>
 	{% else %}
 		<h2>Species - Not found</h2>
@@ -21,7 +21,6 @@
 
 
 {% block content %}
-	<p><a href="/species/">All Species</a> | <a href="/species/search/">Search Species</a> </p>
 
 	{% if species %}
 		<section>
@@ -35,6 +34,7 @@
 		<section>
 			<h1>Detections</h1>
 			{% if detections %}
+				<p>Detected {{ detections|length }} time(s)</p>
 				<ul>
 					{% for d in detections %}
 						<li><a href="/detections/{{ d.id}}/">{{ d.date }}</a></li>

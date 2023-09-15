@@ -1,0 +1,16 @@
+{% extends "with-sidebar.html" %}
+
+{% block sidebar %}
+	
+	{% block sidebar-addition %}
+	{%  endblock sidebar-addition %}
+	
+	<section>
+		<h3>Species</h3>
+		<ul>
+			<li><a href="/species/">List species</a></li>
+			<li><a href="/species/search/">Search Species</a></li>
+		</ul>
+	</section>
+	<hr/>
+{% endblock sidebar %}
