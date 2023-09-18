@@ -6,11 +6,33 @@ from ..models import Species, Detection
 
 
 def entire(request):
-	species_list = Species.objects.all()
+
+	# Todo: Make this more efficient
+	species_list = Species.objects.all().order_by("common_name")
+	detection_list = Detection.objects.all()
+
+	detections_by_species_id = count_detections_by_species_id(detection_list)
+
+	for s in species_list:
+		s.detection_count = detections_by_species_id[s.id]
+
 	context = {
 		"species_list": species_list,
 	}
 	return render(request, "species/list.html", context)
+
+
+def count_detections_by_species_id( detection_list ) :
+
+	species_ids = {}
+
+	for d in detection_list :
+		try:
+			species_ids[d.species.id] += 1
+		except KeyError:
+			species_ids[d.species.id] = 1
+
+	return species_ids
 
 
 def single(request, species_id):
@@ -30,12 +52,11 @@ def single(request, species_id):
 
 def search(request):
 
-	# Check if the request is a post request.
 	if request.method == 'POST':
-		# Retrieve the search query entered by the user
+
 		search_query = request.POST['query']
-		# Filter your model by the search query
 		species = Species.objects.filter(Q(common_name__icontains=search_query) | Q(scientific_name__icontains=search_query))
 		return render(request, 'species/search.html', {'query': search_query, 'species': species})
+
 	else:
 		return render(request, 'species/search.html', {})

@@ -10,12 +10,17 @@
 {% block content %}
 	<section>
 		{% if species_list %}
-			<p>Found {{ species_list | length }} species.</p>
-			<ul>
+			<p>Found {{ species_list | length }} species:</p>
+			<table>
+				<thead><td>Common Name</td><td>Scientific Name</td><td>Detection Count</td></thead>
 				{% for species in species_list %}
-					<li><a href="/species/{{ species.id}}/">{{ species.common_name }}</a> ({{ species.scientific_name }})</li>
+					<tr>
+						<td><a href="/species/{{ species.id }}/">{{ species.common_name }}</a></td>
+						<td>{{ species.scientific_name }}</td>
+						<td>{{ species.detection_count }}</td>
+					</tr>
 				{% endfor %}
-			</ul>
+			</table>
 		{% else %}
 			<p>No species are available.</p>
 		{% endif %}
