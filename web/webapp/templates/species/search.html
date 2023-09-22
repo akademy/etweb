@@ -34,17 +34,10 @@
 		</form>
 	
 		{% if query %}
-			<p>Found <strong>{{ species|length}}</strong> species matching your search:</p>
-			<ul class="alt">
-				{% for s in species %}
-					<li><p>
-							<a href="/species/{{ s.id }}/">{{ s.common_name }}</a><br/>
-							{{ s.scientific_name }}
-					</p></li>
-				{% endfor %}
-			</ul>
+			<p>Found <strong>{{ species_found|length}}</strong> species matching your search:</p>
+			{% include "species/table.html" with species_list=species_found %}
 		{% else %}
-			<h2>Please enter a search query, above</h2>
+			<p></p>
 		{% endif %}
 	</section>
 	
