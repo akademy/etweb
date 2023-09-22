@@ -1,0 +1,51 @@
+{% extends "detections/sidebar.html" %}
+
+
+{% block title %}
+	{% if detection %}
+		detections: {{ detection.date }}
+	{% else %}
+		detections: Not found
+	{% endif %}
+{% endblock title %}
+
+
+{% block header %}
+	{% if detection %}
+		<h2>Detection: {{ detection.common_name }}</h2>
+		<p>{{ detection.scientific_name }}</p>
+	{% else %}
+		<h2>Detection - Not found</h2>
+	{% endif %}
+{% endblock header %}
+
+
+{% block content %}
+
+	{% if detection %}
+		<section>
+			<h1>Detection Info</h1>
+			<p>Date: <strong>{{ detection.date }}</strong></p>
+			<p>Species common name: <a href="/species/{{ detection.species.id }}/">{{ detection.species.common_name }}</a></p>
+			<p>Confidence: <strong>{{ detection.confidence }}</strong>
+				{% if detection.confidence < 0.5 %}
+					(low)
+				{% elif detection.confidence < 0.7 %}
+					(fair)
+				{% elif detection.confidence < 0.9 %}
+					(good)
+				{% else %}
+					(high)
+				{%  endif %}
+			</p>
+
+			<p>Detector: <a href="/detector/{{ detection.detector.id }}/">{{ detection.detector.name }}</a></p>
+			<p>Analysis by: <a href="/analysis/{{ detection.analysis.id }}/">{{ detection.analysis.name }}</a></p>
+		
+		</section>
+		
+	{% else %}
+		{# This should never be used as it should be a 404 #}
+		<p>Error: Detection not found.</p>
+	{% endif %}
+{% endblock content %}

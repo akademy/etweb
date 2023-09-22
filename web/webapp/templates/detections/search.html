@@ -1,0 +1,57 @@
+{% extends "detections/sidebar.html" %}
+
+{% block title %}Detection List{% endblock title %}
+
+{% block header %}
+	<h2>Detection Search</h2>
+	<p>Detection search results</p>
+{% endblock header %}
+
+{% block content %}
+	
+	<section>
+		<h2>Search</h2>
+		<form class="d-flex" role="search" method="POST" action="{% url 'detections-search' %}">
+			<div class="row uniform">
+				<div class="12u">
+					<label for="search_name">Search a detections species (common name and scientific name)</label>
+					<input
+							class="form-control me-2"
+							type="text"
+							placeholder="Search common name, scientific name"
+							name="search_name"
+							aria-label="Search"
+							value="{{search_name}}"
+					>
+				</div>
+			</div>
+			<div class="row uniform">
+				<div class="6u">
+					<label for="search_start">From start date:</label>
+					<input type="date" id="search_start" name="search_start" value="{{ search_start }}" />
+				</div>
+				<div class="6u">
+					<label for="search_end">To end date:</label>
+					<input type="date" id="search_end" name="search_end" value="{{ search_end }}" />
+				</div>
+			</div>
+			<div class="row uniform">
+				<div class="4u 12u(3)">
+					<ul class="actions">
+						<li><input type="submit" value="Search"></li>
+					</ul>
+				</div>
+				
+			</div>
+			{% csrf_token %}
+		</form>
+	
+		{% if detections_found %}
+			<p>Found <strong>{{ detections_found|length}}</strong> detections matching your search:</p>
+			{% include "detections/table.html" with detection_list=detections_found %}
+		{% elif posted %}
+			<p>No detections found</p>
+		{% endif %}
+	</section>
+	
+{% endblock content %}

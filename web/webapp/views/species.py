@@ -22,9 +22,9 @@ def entire( request ):
 	return render(request, "species/list.html", context)
 
 
-def single(request, species_id):
+def single(request, item_id):
 	try:
-		species = Species.objects.get(pk=species_id)
+		species = Species.objects.get(pk=item_id)
 	except Species.DoesNotExist:
 		raise Http404("Species does not exist")
 
@@ -39,6 +39,7 @@ def single(request, species_id):
 
 def search(request):
 
+	context = {}
 	if request.method == 'POST':
 
 		search_query = request.POST['query']
@@ -52,14 +53,13 @@ def search(request):
 		detections_by_species_id = count_detections_by_species_id(detections)
 		for s in species_found:
 			s.detection_count = detections_by_species_id[s.id]
-		
-		return render(request, 'species/search.html', {
+
+		context = {
 			'query': search_query,
 			'species_found': species_found
-		})
+		}
 
-	else:
-		return render(request, 'species/search.html', {})
+	return render(request, 'species/search.html', context)
 
 
 
