@@ -1,0 +1,32 @@
+{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/dragtable.mod.min.css" /> #}
+
+<table id="lister-table">
+	<thead><td>Analysis</td><td>Description</td><td>URL</td></thead>
+	<tbody>
+	{% for analysis in analysis_list %}
+		<tr>
+			<td><a href="/analyses/{{ analysis.id }}/">{{ analysis.name }}</a></td>
+			<td>{{ analysis.description }}</td>
+			<td>{{ analysis.url}}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+<p><small style="text-align: right">You can double-click the headings to sort the columns.</small></p>
+
+<script>
+	(function tableSorter() {
+		let script = document.createElement('script');
+		script.addEventListener('load', (event) => {
+			// TableSorter from https://mottie.github.io/tablesorter/docs/
+			$("#lister-table").tablesorter({
+				//theme : 'bootstrap',
+			});
+		});
+
+		// load the script file
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js';
+		document.body.appendChild(script);
+	})();
+	
+</script>

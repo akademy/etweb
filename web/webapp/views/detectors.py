@@ -18,7 +18,7 @@ def entire( request ):
 def single(request, item_id):
 	try:
 		detector = Detector.objects.get(pk=item_id)
-	except Species.DoesNotExist:
+	except Detector.DoesNotExist:
 		raise Http404("Species does not exist")
 
 	context = {

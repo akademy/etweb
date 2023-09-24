@@ -23,11 +23,15 @@
 
 	{% if detector %}
 		<section>
-			<h1>Detector Info</h1>
-			<p>Name: <strong>{{ detector.name }}</strong></p>
-			<p>Description: <strong>{{ detector.description }}</strong></p>
-
-			<p>Position: <a href="/position/{{ detector.position.id }}/">{{ detector.position.name }}</a></p>
+			<h2>Detector Info</h2>
+			<dl>
+				<dt>Name</dt>
+					<dd>{{ detector.name }}</dd>
+				<dt>Description</dt>
+					<dd>{{ detector.description }}</dd>
+				<dt>Position</dt>
+					<dd><a href="/positions/{{ detector.position.id }}/">{{ detector.position.name }}</a></dd>
+			</dl>
 		
 		</section>
 		

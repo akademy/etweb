@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import Http404
 from django.db.models import Q
 
-from ..models import Detection, Species
+from ..models import Detection
 
 
 def entire( request ):
@@ -18,7 +18,7 @@ def entire( request ):
 def single(request, item_id):
 	try:
 		detection = Detection.objects.get(pk=item_id)
-	except Species.DoesNotExist:
+	except Detection.DoesNotExist:
 		raise Http404("Species does not exist")
 
 	context = {

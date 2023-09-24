@@ -24,15 +24,20 @@
 
 	{% if species %}
 		<section>
-			<h1>Species Info</h1>
-			<p>Common Name: <strong>{{ species.common_name }}</strong></p>
-			<p>Scientific Name: <strong>{{ species.scientific_name }}</strong></p>
-			<p>{{ species.description }}</p>
+			<h2>Species Info</h2>
+			<dl>
+				<dt>Common Name</dt>
+					<dd>{{ species.common_name }}</dd>
+				<dt>Scientific Name</dt>
+					<dd>{{ species.scientific_name }}</dd>
+				<dt>Description</dt>
+					<dd>{{ species.description }}</dd>
+			</dl>
 		
 		</section>
 		
 		<section>
-			<h1>Detections</h1>
+			<h2>Detections</h2>
 			{% if detections %}
 				<p>Detected {{ detections|length }} time(s)</p>
 				<ul>

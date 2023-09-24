@@ -1,0 +1,20 @@
+{% extends "analyses/sidebar.html" %}
+
+{% block title %}Analysis List{% endblock title %}
+
+{% block header %}
+	<h2>Analysis List</h2>
+	<p>Listing analyses catalogued</p>
+{% endblock header %}
+
+{% block content %}
+	<section>
+		{% if analysis_list %}
+			<p>Found {{ analysis_list | length }} analyses.</p>
+			{% include "analyses/table.html" with analysis_list=analysis_list %}
+		{% else %}
+			<p>No analyses are available.</p>
+		{% endif %}
+	
+	</section>
+{% endblock content %}

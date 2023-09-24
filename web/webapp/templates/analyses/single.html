@@ -1,0 +1,42 @@
+{% extends "analyses/sidebar.html" %}
+
+
+{% block title %}
+	{% if analysis %}
+		Analysis: {{ analysis.name }}
+	{% else %}
+		Analysis: Not found
+	{% endif %}
+{% endblock title %}
+
+
+{% block header %}
+	{% if analysis %}
+		<h2>Analysis: {{ analysis.name }}</h2>
+	{% else %}
+		<h2>Analysis - Not found</h2>
+	{% endif %}
+{% endblock header %}
+
+
+{% block content %}
+
+	{% if analysis %}
+		<section>
+			<h2>Analysis Info</h2>
+			<dl>
+				<dt>Name</dt>
+					<dd>{{ analysis.name }}</dd>
+				<dt>Description</dt>
+					<dd>{{ analysis.description }}</dd>
+				<dt>URL</dt>
+					<dd><a href="{{ analysis.url }}" target="_blank">{{ analysis.url }}</a></dd>
+			</dl>
+		
+		</section>
+		
+	{% else %}
+		{# This should never be used as it should be a 404 #}
+		<p>Error: Analysis not found.</p>
+	{% endif %}
+{% endblock content %}

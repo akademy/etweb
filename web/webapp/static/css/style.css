@@ -1381,9 +1381,14 @@ p.tight {
 	margin: 0 !important;
 }
 
+/* single page definitions */
+dl dt { font-weight: bold }
+dl dt { font-weight: bold; padding-left: 20px }
+dl dt::after { content: ":" }
+dl dd { margin-left: 40px; padding-bottom: 10px }
 
-
-
+dl dt:nth-child(1) { font-size: larger }
+dl dd:nth-child(2) { font-size: larger; padding-bottom: 20px }
 
 
 
