@@ -14,7 +14,7 @@
 		<p class="tight">Search a species common name and scientific name</p>
 		<form class="d-flex" role="search" method="POST" action="{% url 'species-search' %}">
 			<div class="row uniform">
-				<div class="8u 12u(3)">
+				<div class="12u(3)">
 					<input
 							class="form-control me-2"
 							type="text"
@@ -24,6 +24,8 @@
 							value="{{query}}"
 					>
 				</div>
+			</div>
+			<div>
 				<div class="4u 12u(3)">
 					<ul class="actions">
 						<li><input type="submit" value="Search"></li>

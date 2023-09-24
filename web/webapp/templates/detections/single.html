@@ -3,17 +3,16 @@
 
 {% block title %}
 	{% if detection %}
-		detections: {{ detection.date }}
+		Detection: {{ detection.date }}
 	{% else %}
-		detections: Not found
+		Detection: Not found
 	{% endif %}
 {% endblock title %}
 
 
 {% block header %}
 	{% if detection %}
-		<h2>Detection: {{ detection.common_name }}</h2>
-		<p>{{ detection.scientific_name }}</p>
+		<h2>Detection at {{ detection.date }}</h2>
 	{% else %}
 		<h2>Detection - Not found</h2>
 	{% endif %}

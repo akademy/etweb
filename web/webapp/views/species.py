@@ -42,7 +42,7 @@ def search(request):
 	context = {}
 	if request.method == 'POST':
 
-		search_query = request.POST['query']
+		search_query = request.POST['query'].strip()
 		
 		species_found = Species.objects\
 			.filter(Q(common_name__icontains=search_query) | Q(scientific_name__icontains=search_query))\

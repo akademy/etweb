@@ -18,7 +18,7 @@ class Position(WMModel):
 
 
 class Detector(WMModel):
-	models.ForeignKey(Position, on_delete=models.CASCADE)
+	position = models.ForeignKey(Position, on_delete=models.CASCADE)
 	name = models.CharField(max_length=500)
 	description = models.TextField(max_length=4096)
 

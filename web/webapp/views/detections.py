@@ -31,24 +31,18 @@ def search(request):
 
 	if request.method == 'POST':
 
-		search_name = request.POST['search_name']
+		search_name = request.POST['search_name'].strip()
 		search_start = request.POST['search_start']
 		search_end = request.POST['search_end']
 		
 		q_filter = Q(date__gte=search_start + " 00:00:00") & Q(date__lte=search_end + " 23:59:59")
-		if search_name.strip() != "" :
+		if search_name != "" :
 			q_filter = q_filter & (
 					Q(species__common_name__icontains=search_name) | Q(species__scientific_name__icontains=search_name))
 			
 		detections_found = Detection.objects\
 			.filter( q_filter )\
 			.order_by("date")
-			
-		#detections_found = Detection.objects\
-		#	.filter(
-		#		Q(species__common_name__icontains=search_name) | Q(species__scientific_name__icontains=search_name)
-		#	)\
-		#	.order_by("date")
 
 		return render(request, 'detections/search.html', {
 			'search_name': search_name,

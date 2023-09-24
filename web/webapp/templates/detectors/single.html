@@ -1,0 +1,38 @@
+{% extends "detectors/sidebar.html" %}
+
+
+{% block title %}
+	{% if detector %}
+		Detector: {{ detector.name }}
+	{% else %}
+		Detector: Not found
+	{% endif %}
+{% endblock title %}
+
+
+{% block header %}
+	{% if detector %}
+		<h2>Detector: {{ detector.name }}</h2>
+	{% else %}
+		<h2>Detector - Not found</h2>
+	{% endif %}
+{% endblock header %}
+
+
+{% block content %}
+
+	{% if detector %}
+		<section>
+			<h1>Detector Info</h1>
+			<p>Name: <strong>{{ detector.name }}</strong></p>
+			<p>Description: <strong>{{ detector.description }}</strong></p>
+
+			<p>Position: <a href="/position/{{ detector.position.id }}/">{{ detector.position.name }}</a></p>
+		
+		</section>
+		
+	{% else %}
+		{# This should never be used as it should be a 404 #}
+		<p>Error: Detector not found.</p>
+	{% endif %}
+{% endblock content %}
