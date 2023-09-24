@@ -6,6 +6,8 @@
 - Index everything
 - Pull data from WikiData
 - Include a model to hold a dataset? And piece of data? Could reference it in Analysis and Detection
+- Add a description to each page of the models, explaining what they are.
+	- Also add a longer description on the about page
 
 # Future
 - Should be able to search Species by Position! When there's more than one, if ever...!)
