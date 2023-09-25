@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import analyses, detections, detectors, species
+from .views import analyses, detections, detectors, positions, species
 from .views import home
 
 urlpatterns = [
@@ -20,6 +20,11 @@ urlpatterns = [
 	path("detectors/", detectors.entire, name="detectors-entire"),
 	path("detectors/search/", detectors.search, name="detectors-search"),
 	path("detectors/<int:item_id>/", detectors.single, name="detectors-single"),
+
+	# Positions
+	path("positions/", positions.entire, name="positions-entire"),
+	path("positions/search/", positions.search, name="positions-search"),
+	path("positions/<int:item_id>/", positions.single, name="positions-single"),
 	
 	# Species
 	path("species/", species.entire, name="species-entire"),

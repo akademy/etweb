@@ -1,0 +1,46 @@
+{% extends "positions/sidebar.html" %}
+
+{% block title %}Position List{% endblock title %}
+
+{% block header %}
+	<h2>Position Search</h2>
+	<p>Position search results</p>
+{% endblock header %}
+
+{% block content %}
+	
+	<section>
+		<h2>Search</h2>
+		<form class="d-flex" role="search" method="POST" action="{% url 'positions-search' %}">
+			<div class="row uniform">
+				<div class="12u">
+					<label for="search_name">Search in Position name</label>
+					<input
+							class="form-control me-2"
+							type="text"
+							placeholder="Position name"
+							name="search_name"
+							aria-label="Search"
+							value="{{search_name}}"
+					>
+				</div>
+			</div>
+			<div class="row uniform">
+				<div class="4u 12u(3)">
+					<ul class="actions">
+						<li><input type="submit" value="Search"></li>
+					</ul>
+				</div>
+			</div>
+			{% csrf_token %}
+		</form>
+	
+		{% if positions_found %}
+			<p>Found <strong>{{ positions_found|length}}</strong> positions matching your search:</p>
+			{% include "positions/table.html" with position_list=positions_found %}
+		{% elif posted %}
+			<p>No positions found</p>
+		{% endif %}
+	</section>
+	
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "positions/sidebar.html" %}
+
+{% block title %}Position List{% endblock title %}
+
+{% block header %}
+	<h2>Position List</h2>
+	<p>Listing positions catalogued</p>
+{% endblock header %}
+
+{% block content %}
+	<section>
+		{% if position_list %}
+			<p>Found {{ position_list | length }} positions.</p>
+			{% include "positions/table.html" with position_list=position_list %}
+		{% else %}
+			<p>No positions are available.</p>
+		{% endif %}
+	
+	</section>
+{% endblock content %}

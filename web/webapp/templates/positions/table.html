@@ -1,13 +1,13 @@
 {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/dragtable.mod.min.css" /> #}
 
 <table id="lister-table">
-	<thead><td>Detector</td><td>Description</td><td>Position</td></thead>
+	<thead><td>Position</td><td>Description</td><td>Lat/Long</td></thead>
 	<tbody>
-	{% for detector in detector_list %}
+	{% for position in position_list %}
 		<tr>
-			<td><a href="/detectors/{{ detector.id }}/">{{ detector.name }}</a></td>
-			<td>{{ detector.description | truncatechars:150 }}</td>
-			<td><a href="/species/{{ detector.position.id }}/">{{ detector.position.name }}</a></td>
+			<td><a href="/positions/{{ position.id }}/">{{ position.name }}</a></td>
+			<td>{{ position.description | truncatechars:150 }}</td>
+			<td>North&nbsp;{{position.latitude}},<br/>East&nbsp;{{position.longitude}}</td>
 		</tr>
 	{% endfor %}
 	</tbody>

@@ -1,7 +1,7 @@
 # Todo List
 - Add start and end values to audio detection
 - About page
-- Implement all models (Position etc.)
+- Implement all models (Position)
 - should be able to search Species by type (bird, insect, etc)
 - Index everything
 - Pull data from WikiData
@@ -10,9 +10,12 @@
 	- Also add a longer description on the about page
 
 # Future
-- Should be able to search Species by Position! When there's more than one, if ever...!)
+- Should be able to search Species by Position, and groups of positions (or areas). But only one currently.
+	- Perhaps a screen tp select multiple positions, that then is persistant across all other screens.
 - Include historical weather
+	- Weather data is collected at the ET Site.
 - Pagination
+	- Everything in database is currently returned... not too much of a problem yet...
 
 
 ## Done

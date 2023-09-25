@@ -6,7 +6,7 @@
 	{% for analysis in analysis_list %}
 		<tr>
 			<td><a href="/analyses/{{ analysis.id }}/">{{ analysis.name }}</a></td>
-			<td>{{ analysis.description }}</td>
+			<td>{{ analysis.description | truncatechars:150 }}</td>
 			<td>{{ analysis.url}}</td>
 		</tr>
 	{% endfor %}
