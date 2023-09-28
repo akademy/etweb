@@ -1,11 +1,12 @@
-from abc import abstractmethod
-
 from django.db import models
 
 
 class WMModel(models.Model):
 	class Meta:
 		abstract = True
+
+	added = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return self.name

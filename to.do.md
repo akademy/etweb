@@ -1,7 +1,6 @@
 # Todo List
 - Add start and end values to audio detection
 - About page
-- Implement all models (Position)
 - should be able to search Species by type (bird, insect, etc)
 - Index everything
 - Pull data from WikiData
@@ -20,3 +19,5 @@
 
 ## Done
 - ~~Add a "process" element, (that is really does the detection), at a basic level, AI or human~~
+- ~~Implement all models~~
+- ~~Added added and modified dates~~
