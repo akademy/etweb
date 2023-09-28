@@ -1,0 +1,60 @@
+{% extends "without-sidebar.html" %}
+{% load static %}
+
+{% block header %}
+	<h2>About</h2>
+	<p>About Wildlife Monitoring website</p>
+{% endblock header %}
+
+{% block content %}
+	
+	{# <a href="#" class="image fit"><img src="{% static 'images/pic07.jpg'%}" alt="" /></a> #}
+	<h3>General</h3>
+	<p>
+		This website holds the data captured at monitoring stations. This is essentially
+		data on the biodiversity.
+	</p>
+
+	<p>
+		Currently, there is only one monitoring station, located at Earth Trust in Oxfordshire.
+	</p>
+
+
+	<h3>Data</h3>
+	<p>
+		There are several types of data, Analyses, Detections, Detectors, Positions and Species.
+	</p>
+	<h4>Analyses</h4>
+	<p>
+		These are the processes that have run on the data to identify a species. This might be a simple piece of
+		software, an AI trained identifier, or even a human.
+	</p>
+	<p>See a list of analyses <a href="/analyses/">here</a>.</p>
+	
+	<h4>Detections</h4>
+	<p>
+		These store a detection of a single species, when it happened and how it was found.
+	</p>
+	<p>See a list of detections <a href="/detections/">here</a>.</p>
+	
+	<h4>Detectors</h4>
+	<p>
+		These are the physical devices used to capture a piece of data. A camera or microphone for example.
+	</p>
+	<p>See a list of detectors <a href="/detectors">here</a>.</p>
+	
+	<h4>Positions</h4>
+	<p>
+		This is the location of the monitoring station. (i.e. where all the detectors are located)
+	</p>
+	<p>See a list of positions <a href="/positions/">here</a>. (Only one currently!)</p>
+	
+	<h4>Species</h4>
+	<p>
+		These are all the species detected. A <i>Gray Wagtail</i> or a <i>Long-tailed Tit</i>.
+	</p>
+	<p>See a list of species <a href="/species/">here</a>.</p>
+
+
+
+{% endblock content %}

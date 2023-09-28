@@ -1,10 +1,12 @@
 from django.urls import path
 
 from .views import analyses, detections, detectors, positions, species
-from .views import home
+from .views import home, about
 
 urlpatterns = [
 	path("", home.index, name="index"),
+	path("explore/", home.explore, name="explore"),
+	path("about/", about.about, name="about"),
 
 	# Analyses
 	path("analyses/", analyses.entire, name="analyses-entire"),
