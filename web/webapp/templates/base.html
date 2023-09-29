@@ -1,4 +1,5 @@
 {% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +7,22 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<!--[if lte IE 8]><script src="{% static 'css/ie/html5shiv.js' %}></script><![endif]-->
-	<script src="{% static 'js/jquery.min.js' %}"></script>
-	<script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
-	<script src="{% static 'js/jquery.scrollgress.min.js' %}"></script>
-	<script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
-	<script src="{% static 'js/jquery.slidertron.min.js' %}"></script>
-	<script src="{% static 'js/skel.min.js' %}"></script>
-	<script src="{% static 'js/skel-layers.min.js' %}"></script>
-	<script src="{% static 'js/init.js' %}"></script>
+	<!--[if lte IE 8]><script src="{{ STATIC_PREFIX }}css/ie/html5shiv.js"></script><![endif]-->
+	<script src="{{ STATIC_PREFIX }}js/jquery.min.js"></script>
+	<script src="{{ STATIC_PREFIX }}js/jquery.dropotron.min.js"></script>
+	<script src="{{ STATIC_PREFIX }}js/jquery.scrollgress.min.js"></script>
+	<script src="{{ STATIC_PREFIX }}js/jquery.scrolly.min.js"></script>
+	<script src="{{ STATIC_PREFIX }}js/jquery.slidertron.min.js"></script>
+	<script src="{{ STATIC_PREFIX }}js/skel.min.js"></script>
+	<script src="{{ STATIC_PREFIX }}js/skel-layers.min.js"></script>
+	<script src="{{ STATIC_PREFIX }}js/init.js"></script>
 	<noscript>
-		<link rel="stylesheet" href="{% static 'css/skel.css' %}" />
-		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
-		<link rel="stylesheet" href="{% static 'css/style-xlarge.css' %}" />
+		<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/skel.css" />
+		<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/style.css" />
+		<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/style-xlarge.css" />
 	</noscript>
-	<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'css/ie/v9.css' %}" /><![endif]-->
-	<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'css/ie/v8.css' %}" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" href="{{ STATIC_PREFIX }}css/ie/v9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="{{ STATIC_PREFIX }}css/ie/v8.css" /><![endif]-->
 </head>
 
 <body class="{% block bodyclass %}{% endblock %}">
@@ -32,7 +33,9 @@
 		<nav id="nav">
 			<ul>
 				<li><a href="/">Home</a></li>
-				<!--<li><a href="/search/">Search</a></li>-->
+				{%  comment "No search yet" %}
+					<li><a href="/search/">Search</a></li>
+				{% endcomment %}
 				<li>
 					<a href="" class="icon fa-angle-down">Explore</a>
 					<ul>
@@ -41,7 +44,7 @@
 						<li><a href="/detectors/">Detectors</a></li>
 						<li><a href="/positions/">Positions</a></li>
 						<li><a href="/species/">Species</a></li>
-						<!--
+						{%  comment "Just here for reference" %}
 						<li>
 							<a href="">Sub menu</a>
 							<ul>
@@ -51,7 +54,7 @@
 								<li><a href="/species/">item 4</a></li>
 							</ul>
 						</li>
-						-->
+						{% endcomment %}
 					</ul>
 				</li>
 				<li><a href="/about/">About</a></li>
