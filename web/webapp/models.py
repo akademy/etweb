@@ -1,9 +1,13 @@
+import uuid
+
 from django.db import models
 
 
 class WMModel(models.Model):
 	class Meta:
 		abstract = True
+
+	uuid = models.UUIDField( default=uuid.uuid4, editable=False, unique=True)
 
 	added = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
