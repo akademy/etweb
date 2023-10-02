@@ -1,19 +1,17 @@
 import csv
 import os
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 from webapp.models import Analysis, Detection, Detector, Position, Species
 from webapp.indexers.indexer import Indexer
 
 
 class BTO(Indexer):
-
-	CONFIDENCE_LIMIT = 0.5
 	
 	def index_data(self, position, detector, analysis, file_path_list):
 		
 		for path in file_path_list:
-
 
 			species_dict = {}
 			with open(path, newline='') as csv_file:
@@ -24,11 +22,14 @@ class BTO(Indexer):
 						continue
 
 					confidence = float(row["PROBABILITY"])
-					if confidence < BTO.CONFIDENCE_LIMIT :
+					if confidence < Indexer.CONFIDENCE_LIMIT :
 						continue
 					
+					detection_time = datetime.strptime(
+						f"{row['ACTUAL DATE']} {row['TIME']}",
+						"%d/%m/%Y %H:%M:%S"
+					).replace(tzinfo=ZoneInfo(Indexer.TIMEZONE))
 					
-					detection_time = datetime.strptime(f"{row['ACTUAL DATE']} {row['TIME']}", "%d/%m/%Y %H:%M:%S")
 					scientific_name = row['SCIENTIFIC NAME']
 					
 					if scientific_name not in species_dict:
@@ -64,25 +65,4 @@ class BTO(Indexer):
 						)
 
 		return True
-
-	
-	@staticmethod
-	def _datetime_from_filename(path):
-		"""
-		Extract date and time from filename
-			e.g. "EARTH_20220809_025600.BirdNET.results.csv"
-		:param filename: filename or filepath
-		:return: dict {'filename': filename, 'date': date, 'time': time}
-		:raise: ValueError if can't read data from name
-		"""
-		filename = os.path.basename(path).replace(",", "-")
-		date_and_time = filename.split("_")
-		date = date_and_time[1]
-		time = date_and_time[2].split(".")[0]
-
-		# test are numbers
-		_ = int(date)
-		_ = int(time)
-
-		return datetime.strptime(f"{date} {time}", "%Y%m%d %H%M%S")
 		

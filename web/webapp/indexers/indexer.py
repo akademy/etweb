@@ -6,6 +6,9 @@ from webapp.models import Analysis, Detection, Detector, Position, Species
 
 class Indexer(ABC):
 
+	CONFIDENCE_LIMIT = 0.5
+	TIMEZONE = "Europe/London"
+
 	def __init__(self, stdout, stderr ):
 		self.stdout = stdout
 		self.stderr = stderr

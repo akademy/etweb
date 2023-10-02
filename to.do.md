@@ -16,7 +16,7 @@
 	- Weather data is collected at the ET Site.
 - Pagination
 	- Everything in database is currently returned... not too much of a problem yet...
-
+- Work out timezone from Position. Currently it is assumed "Europe/London"
 
 ## Done
 - ~~Add a "process" element, (that is really does the detection), at a basic level, AI or human~~

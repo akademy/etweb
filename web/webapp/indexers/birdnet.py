@@ -1,6 +1,7 @@
 import csv
 import os
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 from webapp.models import Analysis, Detection, Detector, Position, Species
 from webapp.indexers.indexer import Indexer
@@ -79,5 +80,5 @@ class BirdNet(Indexer):
 		_ = int(date)
 		_ = int(time)
 
-		return datetime.strptime(f"{date} {time}", "%Y%m%d %H%M%S")
+		return datetime.strptime(f"{date} {time}", "%Y%m%d %H%M%S").replace(tzinfo=ZoneInfo(Indexer.TIMEZONE))
 		
