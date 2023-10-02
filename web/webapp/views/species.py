@@ -14,7 +14,10 @@ def entire( request ):
 	detections_by_species_id = count_detections_by_species_id(detection_list)
 
 	for s in species_list:
-		s.detection_count = detections_by_species_id[s.id]
+		try:
+			s.detection_count = detections_by_species_id[s.id]
+		except KeyError:
+			s.detection_count = 0
 
 	context = {
 		"species_list": species_list,
