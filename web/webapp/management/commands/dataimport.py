@@ -13,17 +13,20 @@ from webapp.indexers.indexer import Indexer
 class Command(BaseCommand):
 	help = 'Enter new data into the database. Do not override old data.'
 
+	# DATA_FOLDER = "/media/matthew/Data/Git/Work/Earth Trust/ETWeb/data/"
+	DATA_FOLDER = "/media/matthew/Data/Git/Work/Earth Trust/ETWeb/data-test/"
+	
 	def handle(self, *args, **options):
 		
 		self.stdout.write("Work in progress....!!!!")
 
 		# self.stdout.write(os.getcwd()) /media/matthew/Data/Git/Work/Earth Trust/ETWeb/web
-		data_folder = "/media/matthew/Data/Git/Work/Earth Trust/ETWeb/data/"
+
 		meta_file_name = "meta.toml"
 
-		dirs = os.listdir(data_folder)
+		dirs = os.listdir(Command.DATA_FOLDER)
 		for name in dirs:
-			data_folder_analysis = os.path.join( data_folder, name )
+			data_folder_analysis = os.path.join( Command.DATA_FOLDER, name )
 			self.stdout.write( f"Processing '{name}' folder ({data_folder_analysis})" )
 
 			metafile = os.path.join( data_folder_analysis, meta_file_name )

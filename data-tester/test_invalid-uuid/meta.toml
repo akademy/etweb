@@ -1,0 +1,12 @@
+# Data meta TEST
+# Test invalid uuids
+[position]
+name = "Earth Trust"
+uuid = ""  # not valid id
+
+[analysis]
+name = "BirdNet"
+uuid = "27df0a2ef4cb49a63e25e"  # not valid id
+
+[data]
+type = "csv"

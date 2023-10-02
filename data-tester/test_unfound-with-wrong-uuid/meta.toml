@@ -1,0 +1,13 @@
+# Data meta TEST
+# Test position not found
+# Test analysis not found
+[position]
+name = "Earth Trust"
+uuid = "637e78cc56974a808d108d60f70676c8"  # wrong id
+
+[analysis]
+name = "BirdNet"
+uuid = "27df0a2ef4cb499f98eca2e05a63e25e"  # wrong id
+
+[data]
+type = "csv"
