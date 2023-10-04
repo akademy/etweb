@@ -24,24 +24,59 @@
 
 	{% if species %}
 		<section>
+			<a href="#wikimedia"><img src="{{ photos | first }}&width=500" width="200" style="float:right"/></a>
 			<h2>Species Info</h2>
+		
 			<dl>
 				<dt>Common Name</dt>
 					<dd>{{ species.common_name }}</dd>
 				<dt>Scientific Name</dt>
 					<dd>{{ species.scientific_name }}</dd>
-				<dt>Description</dt>
-					<dd>{{ species.description }}</dd>
-				<dt>uuid</dt>
+				<dt>Detection</dt>
+					<dd>Detected {{ detections|length }} time{{ detections|pluralize }}.</dd>
+			
+				{% if species.description %}
+					<dt>Description</dt>
+						<dd>{{ species.description }}</dd>
+				{% endif %}
+			
+				<br/>
+			
+				{% if species.wikipedia_url %}
+					<dt>Wikipedia entry</dt>
+						<dd>{{ species.wikipedia_url | urlize }}</dd>
+				{% endif %}
+			
+				{% if photos %}
+					<dt id="wikimedia">Wikimedia images</dt>
+					
+					<dd>
+						{% for photo in photos %}
+							<a href="{{ species.wikimedia_url }}"><img src="{{ photo }}&width=500"/></a>
+						{% endfor %}
+						<p>See {{ species.wikimedia_url | urlize }} for further info.</p>
+					</dd>
+				{% endif %}
+
+				<dt>UUID</dt>
 					<dd>{{ species.uuid }}</dd>
+			
+				{% if species.wikidata_url %}
+					<dt>Wikidata entry</dt>
+					<dd>{{ species.wikidata_url | urlize }}</dd>
+				{% endif %}
+			
+			
 			</dl>
+			
+
 		
 		</section>
 		
 		<section>
 			<h2>Detections</h2>
 			{% if detections %}
-				<p>Detected {{ detections|length }} time(s)</p>
+				<p>{{ detections|length }} detection{{ detections|pluralize }}:</p>
 				<ul>
 					{% for d in detections %}
 						<li><a href="/detections/{{ d.id}}/">{{ d.date }}</a></li>

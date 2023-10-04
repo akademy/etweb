@@ -39,6 +39,11 @@ class Species(WMModel):
 	scientific_name = models.CharField(max_length=500)
 	description = models.TextField(max_length=4096)
 
+	wikidata_url = models.URLField(max_length=256)
+	wikipedia_url = models.URLField(max_length=256)
+	wikimedia_url = models.URLField(max_length=256)
+	wikimedia_photo_urls = models.URLField(max_length=1033)
+	
 	def __str__(self):
 		return self.common_name
 

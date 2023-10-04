@@ -31,10 +31,11 @@ def single(request, item_id):
 	except Species.DoesNotExist:
 		raise Http404("Species does not exist")
 
-	detections = Detection.objects.filter(species=species)
-
+	detections = Detection.objects.filter(species=species).order_by("date")
+	
 	context = {
 		"species": species,
+		"photos": species.wikimedia_photo_urls.split("###"),
 		"detections": detections
 	}
 	return render(request, "species/single.html", context)
