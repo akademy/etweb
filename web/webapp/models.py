@@ -29,6 +29,7 @@ class Detector(WMModel):
 
 
 class Analysis(WMModel):
+	detector = models.ForeignKey(Detector, on_delete=models.CASCADE)
 	name = models.CharField(max_length=500)
 	description = models.TextField(max_length=4096)
 	url = models.CharField(max_length=500, blank=True)
@@ -49,7 +50,6 @@ class Species(WMModel):
 
 
 class Detection(WMModel):
-	detector = models.ForeignKey(Detector, on_delete=models.CASCADE)
 	analysis = models.ForeignKey(Analysis, on_delete=models.CASCADE)
 	species = models.ForeignKey(Species, on_delete=models.CASCADE)
 	date = models.DateTimeField("date detected")

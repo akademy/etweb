@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.db.models import Q
+from django.db.models import Q, Count
 
-from ..models import Analysis
+from ..models import Analysis, Detector
 
 
 def entire( request ):
@@ -12,6 +12,7 @@ def entire( request ):
 	context = {
 		"analysis_list": analysis_list,
 	}
+	
 	return render(request, "analyses/list.html", context)
 
 
@@ -21,8 +22,11 @@ def single(request, item_id):
 	except Analysis.DoesNotExist:
 		raise Http404("Species does not exist")
 
+	detector = Detector.objects.get(pk=analysis.detector.id)
+
 	context = {
-		"analysis": analysis
+		"analysis": analysis,
+		"detector": detector
 	}
 	return render(request, "analyses/single.html", context)
 

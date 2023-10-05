@@ -33,8 +33,10 @@
 					<dd><a href="{{ analysis.url }}" target="_blank">{{ analysis.url }}</a></dd>
 				<dt>uuid</dt>
 					<dd>{{ analysis.uuid }}</dd>
+				<br/>
+				<dt>Using Detector</dt>
+					<dd><a href="/detectors/{{ detector.id }}/">{{ detector.name }}</a></dd>
 			</dl>
-		
 		</section>
 		
 	{% else %}
