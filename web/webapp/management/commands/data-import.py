@@ -13,7 +13,8 @@ from webapp.indexers.indexer import Indexer
 class Command(BaseCommand):
 	help = 'Enter new data into the database. Do not override old data.'
 
-	# DATA_FOLDER = "/media/matthew/Data/Git/Work/Earth Trust/ETWeb/data/"
+	DATA_FOLDER = "/media/matthew/Data/Git/Work/Earth Trust/ETWeb/data-full/"
+	DATA_FOLDER = "/media/matthew/Data/Git/Work/Earth Trust/ETWeb/data-small/"
 	DATA_FOLDER = "/media/matthew/Data/Git/Work/Earth Trust/ETWeb/data-tester/"
 	
 	def handle(self, *args, **options):

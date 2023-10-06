@@ -4,13 +4,17 @@ from django.db.models import Q
 
 from ..models import Detection
 
+MAX_RETURN = 1000
+
 
 def entire( request ):
 
-	detection_list = Detection.objects.all().order_by("date")
+	detection_list = Detection.objects.all().order_by("date")[:MAX_RETURN]
+	count = Detection.objects.count()
 
 	context = {
 		"detection_list": detection_list,
+		"count": count
 	}
 	return render(request, "detections/list.html", context)
 
@@ -43,12 +47,16 @@ def search(request):
 		detections_found = Detection.objects\
 			.filter( q_filter )\
 			.order_by("date")
+		
+		count = detections_found.count()
+		detections_found = detections_found[:MAX_RETURN]
 
 		return render(request, 'detections/search.html', {
 			'search_name': search_name,
 			'search_start': search_start,
 			'search_end': search_end,
 			'detections_found': detections_found,
+			'count': count,
 			'posted': True
 		})
 	

@@ -38,6 +38,18 @@
 		
 		</section>
 		
+		<section>
+			<h3>Detections by this detector</h3>
+			<table>
+				<thead>
+				<tr><td>Week and year</td><td>Count</td></tr>				
+				</thead>
+			{% for dpw in detections_per_week%}
+				<tr><td>Week {{ dpw.week }}, {{ dpw.year }}</td><td>{{ dpw.date__count }}</td></tr>
+			{% endfor %}
+			</table>
+		</section>
+		
 	{% else %}
 		{# This should never be used as it should be a 404 #}
 		<p>Error: Detector not found.</p>

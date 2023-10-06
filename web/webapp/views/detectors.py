@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.db.models import Q
 
-from ..models import Detector
+from django.db.models import Q, Count
+from django.db.models.functions import ExtractWeek, ExtractYear
+
+from ..models import Detector, Detection
 
 
 def entire( request ):
@@ -21,9 +23,16 @@ def single(request, item_id):
 	except Detector.DoesNotExist:
 		raise Http404("Species does not exist")
 
+	detections_per_week = Detection.objects.filter(analysis__detector=detector)\
+		.annotate(week=ExtractWeek("date"), year=ExtractYear("date"))\
+		.values("year", "week")\
+		.annotate(Count("date") ).order_by("year", "week")
+
 	context = {
-		"detector": detector
+		"detector": detector,
+		"detections_per_week": detections_per_week
 	}
+	
 	return render(request, "detectors/single.html", context)
 
 

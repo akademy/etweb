@@ -47,7 +47,7 @@
 		</form>
 	
 		{% if detections_found %}
-			<p>Found <strong>{{ detections_found|length}}</strong> detections matching your search:</p>
+			<p>Showing <strong>{{ detections_found|length}}</strong> of {{ count }} detections matching your search:</p>
 			{% include "detections/table.html" with detection_list=detections_found %}
 		{% elif posted %}
 			<p>No detections found</p>

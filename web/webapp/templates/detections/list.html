@@ -10,7 +10,7 @@
 {% block content %}
 	<section>
 		{% if detection_list %}
-			<p>Found {{ detection_list | length }} detections.</p>
+			<p>Showing {{ detection_list | length }} detections of {{ count }}.</p>
 			{% include "detections/table.html" with detection_list=detection_list %}
 		{% else %}
 			<p>No detections are available.</p>
