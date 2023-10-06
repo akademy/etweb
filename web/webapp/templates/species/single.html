@@ -32,26 +32,20 @@
 					<dd>{{ species.common_name }}</dd>
 				<dt>Scientific Name</dt>
 					<dd>{{ species.scientific_name }}</dd>
+
+				<dt>Detected</dt>
+					<dd>Detected <a href="#detections">{{ detections|length }} time{{ detections|pluralize }}</a>.</dd>
 			
 				{% if species.description or species.wikipedia_description %}
 					<dt>Description</dt>
 					<dd>
 						{% if species.description %}
-							<p>{{ species.description }}</p>
+							{{ species.description }}
 						{% else %}
-							<p>
-								{{ species.wikipedia_description }}
-								<br/><small style="text-align: right;width: 100%">(Description from <a href="{{ species.wikipedia_url }}">Wikipedia</a>)</small>
+							{{ species.wikipedia_description }}
+							<small style="display:block;text-align: right;">(Description from <a href="{{ species.wikipedia_url }}">Wikipedia</a>)</small>
 						{% endif %}
 					</dd>
-				{% endif %}
-			
-				<dt>Detected</dt>
-					<dd>Detected <a href="#detections">{{ detections|length }} time{{ detections|pluralize }}</a>.</dd>
-			
-				{% if species.description %}
-					<dt>Description</dt>
-						<dd>{{ species.description }}</dd>
 				{% endif %}
 			
 				<br/>
