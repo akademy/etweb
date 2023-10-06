@@ -32,6 +32,20 @@
 					<dd>{{ species.common_name }}</dd>
 				<dt>Scientific Name</dt>
 					<dd>{{ species.scientific_name }}</dd>
+			
+				{% if species.description or species.wikipedia_description %}
+					<dt>Description</dt>
+					<dd>
+						{% if species.description %}
+							<p>{{ species.description }}</p>
+						{% else %}
+							<p>
+								{{ species.wikipedia_description }}
+								<br/><small style="text-align: right;width: 100%">(Description from <a href="{{ species.wikipedia_url }}">Wikipedia</a>)</small>
+						{% endif %}
+					</dd>
+				{% endif %}
+			
 				<dt>Detected</dt>
 					<dd>Detected <a href="#detections">{{ detections|length }} time{{ detections|pluralize }}</a>.</dd>
 			
@@ -43,7 +57,7 @@
 				<br/>
 			
 				{% if species.wikipedia_url %}
-					<dt>Wikipedia entry</dt>
+					<dt>Wikipedia Page</dt>
 						<dd>{{ species.wikipedia_url | urlize }}</dd>
 				{% endif %}
 			
@@ -54,7 +68,7 @@
 						{% for photo in photos %}
 							<a href="{{ species.wikimedia_url }}"><img src="{{ photo }}&width=500"/></a>
 						{% endfor %}
-						<p class="small">See {{ species.wikimedia_url | urlize }} for further info on photo(s).</p>
+						<p class="small">See the <a href="{{ species.wikimedia_url }}">Wikimedia page</a> for info on photo(s) and other examples.</p>
 					</dd>
 				{% endif %}
 
@@ -78,14 +92,9 @@
 			{% if detections %}
 				<p>{{ detections|length }} detection{{ detections|pluralize }}:</p>
 				{% include "detections/table.html" with detection_list=detections hide_species=True%}
-				<ul>
-					{% for d in detections %}
-						<li><a href="/detections/{{ d.id}}/">{{ d.date }}</a></li>
-					{% endfor %}
-				</ul>
 			{% else %}
-				{# This should never be used as it should be a 404 #}
-				<p>No detections found. Which is odd.</p>
+				{# Only animals with at least one detection should be in the database...! #}
+				<p>No detections found. Which is odd...</p>
 			{% endif %}
 		</section>
 		

@@ -5,33 +5,33 @@ from urllib.parse import urlparse
 from django.core.management.base import BaseCommand
 from django.db.models import Q
 
-from webapp.models import Analysis, Detection, Detector, Position, Species
+from webapp.models import Species
 
 
 class Command(BaseCommand):
 	help = 'Enter wikipedia data into the database. Do not override old data.'
 
+	WIKIDATA_URL = 'https://query.wikidata.org/sparql'
 	PAUSE_TIME_SECONDS = 3
 	
 	def handle(self, *args, **options):
 
-		url = 'https://query.wikidata.org/sparql'
-		query_template = self.sparql_wikidata_template()
-
 		species_list = Species.objects.filter(
-			Q(wikidata_url__exact="") | 
-			Q(wikipedia_url__exact="") |
-			Q(wikimedia_url__exact="") |
-			Q(wikimedia_photo_urls__exact="")
+			Q(wikidata_url__isnull=True) | 
+			Q(wikipedia_url__isnull=True) |
+			Q(wikimedia_url__isnull=True) |
+			Q(wikimedia_photo_urls__isnull=True)
 		)
 
 		self.stdout.write( str(len(species_list)) + " species found..." )
+		
+		query_template = self.sparql_wikidata_template()
 		for species in species_list:
 
 			self.stdout.write()
 			self.stdout.write(species.scientific_name)
-			
-			r = requests.get(url, params={
+
+			r = requests.get(Command.WIKIDATA_URL, params={
 				'format': 'json', 
 				'query': query_template.format(scientific_name=species.scientific_name)
 			})

@@ -32,18 +32,20 @@ class Analysis(WMModel):
 	detector = models.ForeignKey(Detector, on_delete=models.CASCADE)
 	name = models.CharField(max_length=500)
 	description = models.TextField(max_length=4096)
-	url = models.CharField(max_length=500, blank=True)
+	url = models.URLField(blank=True, max_length=500)
 
 
 class Species(WMModel):
 	common_name = models.CharField(max_length=500)
 	scientific_name = models.CharField(max_length=500)
-	description = models.TextField(max_length=4096)
+	
+	description = models.TextField(blank=True, max_length=4096)  # description overrides wikipedia_description
+	wikipedia_description = models.TextField(blank=True, max_length=4096)
 
-	wikidata_url = models.URLField(max_length=256)
-	wikipedia_url = models.URLField(max_length=256)
-	wikimedia_url = models.URLField(max_length=256)
-	wikimedia_photo_urls = models.URLField(max_length=1033)
+	wikidata_url = models.URLField(blank=True, max_length=256)
+	wikipedia_url = models.URLField(blank=True, max_length=256)
+	wikimedia_url = models.URLField(blank=True, max_length=256)
+	wikimedia_photo_urls = models.URLField(blank=True, max_length=1033)
 	
 	def __str__(self):
 		return self.common_name
