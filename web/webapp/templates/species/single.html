@@ -24,7 +24,9 @@
 
 	{% if species %}
 		<section>
-			<a href="#wikimedia"><img src="{{ photos | first }}&width=500" width="200" style="float:right"/></a>
+			{% if species.wikimedia_photo_urls %}
+				<a href="#wikimedia"><img src="{{ photos | first }}&width=500" width="200" style="float:right"/></a>
+			{% endif %}	
 			<h2>Species Info</h2>
 		
 			<dl>
@@ -55,7 +57,7 @@
 						<dd>{{ species.wikipedia_url | urlize }}</dd>
 				{% endif %}
 			
-				{% if photos %}
+				{% if species.wikimedia_photo_urls %}
 					<dt id="wikimedia">Wikimedia images</dt>
 					
 					<dd>
