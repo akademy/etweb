@@ -1379,6 +1379,10 @@
 
 /****** Wildlife Monitor *******/
 
+.wrapper.style1 {
+	background: #ddead8;
+}
+
 p.small, small {
 	font-size: small;
 }
@@ -1395,7 +1399,8 @@ dl dd { margin-left: 40px; padding-bottom: 10px }
 dl dt:nth-child(1) { font-size: larger }
 dl dd:nth-child(2) { font-size: larger; padding-bottom: 20px }
 
-
-
+#footer a {
+	color:inherit;
+}
 
 
