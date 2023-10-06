@@ -1,12 +1,20 @@
 {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/dragtable.mod.min.css" /> #}
 
 <table id="lister-table">
-	<thead><td>Date</td><td>Species detected</td><td>Confidence</td></thead>
+	<thead>
+		<td>Date and Time</td>
+		{% if not hide_species %}
+			<td>Species detected</td>
+		{% endif %}
+		<td>Confidence</td>
+	</thead>
 	<tbody>
 	{% for detection in detection_list %}
 		<tr>
 			<td><a href="/detections/{{ detection.id }}/">{{ detection.date }}</a></td>
-			<td><a href="/species/{{ detection.species.id }}/">{{ detection.species.common_name }}</a> &nbsp; ({{ detection.species.scientific_name }})</td>
+			{% if not hide_species %}
+				<td><a href="/species/{{ detection.species.id }}/">{{ detection.species.common_name }}</a> &nbsp; ({{ detection.species.scientific_name }})</td>
+			{% endif %}
 			<td>{{ detection.confidence }}</td>
 		</tr>
 	{% endfor %}

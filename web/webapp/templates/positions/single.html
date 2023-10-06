@@ -37,6 +37,17 @@
 		
 		</section>
 		
+		<section>
+			<h2>Detectors attached</h2>
+			{% if detectors %}
+				<p>{{ detectors|length }} detector{{ detectors|pluralize }} at this position:</p>
+				{% include "detectors/table.html" with detector_list=detectors hide_position=True%}
+			{% else %}
+				{# This should never be used as it should be a 404 #}
+				<p>No detections found. Which is odd.</p>
+			{% endif %}
+		</section>
+		
 	{% else %}
 		{# This should never be used as it should be a 404 #}
 		<p>Error: Position not found.</p>

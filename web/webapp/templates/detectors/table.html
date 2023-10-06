@@ -1,13 +1,21 @@
 {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/dragtable.mod.min.css" /> #}
-
+{#  hide_position used to hide position info in table #}
 <table id="lister-table">
-	<thead><td>Detector</td><td>Description</td><td>Position</td></thead>
+	<thead>
+		<td>Detector</td>
+		<td>Description</td>
+		{% if not hide_position %}
+			<td>Position</td>
+		{% endif %}
+	</thead>
 	<tbody>
 	{% for detector in detector_list %}
 		<tr>
 			<td><a href="/detectors/{{ detector.id }}/">{{ detector.name }}</a></td>
 			<td>{{ detector.description | truncatechars:150 }}</td>
-			<td><a href="/species/{{ detector.position.id }}/">{{ detector.position.name }}</a></td>
+			{% if not hide_position %}
+				<td><a href="/species/{{ detector.position.id }}/">{{ detector.position.name }}</a></td>
+			{% endif %}
 		</tr>
 	{% endfor %}
 	</tbody>

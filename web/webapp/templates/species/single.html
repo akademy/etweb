@@ -32,8 +32,8 @@
 					<dd>{{ species.common_name }}</dd>
 				<dt>Scientific Name</dt>
 					<dd>{{ species.scientific_name }}</dd>
-				<dt>Detection</dt>
-					<dd>Detected {{ detections|length }} time{{ detections|pluralize }}.</dd>
+				<dt>Detected</dt>
+					<dd>Detected <a href="#detections">{{ detections|length }} time{{ detections|pluralize }}</a>.</dd>
 			
 				{% if species.description %}
 					<dt>Description</dt>
@@ -54,7 +54,7 @@
 						{% for photo in photos %}
 							<a href="{{ species.wikimedia_url }}"><img src="{{ photo }}&width=500"/></a>
 						{% endfor %}
-						<p>See {{ species.wikimedia_url | urlize }} for further info.</p>
+						<p class="small">See {{ species.wikimedia_url | urlize }} for further info on photo(s).</p>
 					</dd>
 				{% endif %}
 
@@ -74,9 +74,10 @@
 		</section>
 		
 		<section>
-			<h2>Detections</h2>
+			<h3 id="detections">Detected on:</h3>
 			{% if detections %}
 				<p>{{ detections|length }} detection{{ detections|pluralize }}:</p>
+				{% include "detections/table.html" with detection_list=detections hide_species=True%}
 				<ul>
 					{% for d in detections %}
 						<li><a href="/detections/{{ d.id}}/">{{ d.date }}</a></li>

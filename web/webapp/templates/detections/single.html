@@ -3,7 +3,7 @@
 
 {% block title %}
 	{% if detection %}
-		Detection: {{ detection.date }}
+		Detection on {{ detection.date | date:"jS F, Y" }}
 	{% else %}
 		Detection: Not found
 	{% endif %}
@@ -12,7 +12,7 @@
 
 {% block header %}
 	{% if detection %}
-		<h2>Detection at {{ detection.date }}</h2>
+		<h2>Detection on {{ detection.date | date:"jS F, Y"  }}</h2>
 	{% else %}
 		<h2>Detection - Not found</h2>
 	{% endif %}
@@ -25,10 +25,13 @@
 		<section>
 			<h2>Detection Info</h2>
 			<dl>
+				{# Date formatting https://docs.djangoproject.com/en/dev/ref/templates/builtins/#date #}
 				<dt>Date</dt>
-					<dd>{{ detection.date }}</dd>
-				<dt>Species common name</dt>
-					<dd><a href="/species/{{ detection.species.id }}/">{{ detection.species.common_name }}</a></dd>
+					<dd>{{ detection.date | date:"jS F, Y" }}</dd>
+				<dt>Time</dt>
+					<dd>{{ detection.date | date:"G:i:s" }}</dd>
+				<dt>Species detected</dt>
+					<dd><a href="/species/{{ detection.species.id }}/">{{ detection.species.common_name }}</a> ({{ detection.species.scientific_name }})</dd>
 				<dt>Confidence</dt>
 					<dd>
 						{{ detection.confidence }}
@@ -40,12 +43,11 @@
 							(good)
 						{% else %}
 							(high)
-						{%  endif %}
+						{% endif %}
 					</dd>
-				<dt>Detector</dt>
-					<dd><a href="/detectors/{{ detection.detector.id }}/">{{ detection.detector.name }}</a></dd>
 				<dt>Analysis by</dt>
 					<dd><a href="/analyses/{{ detection.analysis.id }}/">{{ detection.analysis.name }}</a></dd>
+				<br/>
 				<dt>uuid</dt>
 					<dd>{{ detection.uuid }}</dd>
 			</dl>

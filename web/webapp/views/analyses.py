@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.db.models import Q, Count
+from django.db.models import Q
 
 from ..models import Analysis, Detector
 
