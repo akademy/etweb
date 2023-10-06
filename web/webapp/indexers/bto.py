@@ -48,7 +48,6 @@ class BTO(Indexer):
 						d = Detection.objects.get(
 							date__exact=detection_time,
 							species=species_dict[scientific_name],
-							detector=detector,
 							analysis=analysis
 						)
 						if d.confidence < confidence:
@@ -59,7 +58,6 @@ class BTO(Indexer):
 						d = Detection.objects.create(
 							date=detection_time,
 							species=species_dict[scientific_name],
-							detector=detector,
 							analysis=analysis,
 							confidence=confidence
 						)
