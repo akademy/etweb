@@ -2,3 +2,4 @@
 Django == 4.2.5
 mysqlclient == 2.2.0
 tomli==2.0.1
+wikipedia==1.4.0

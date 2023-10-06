@@ -1,6 +1,7 @@
 import time
 from urllib.parse import urlparse
 
+from wikipedia import WikipediaException
 import wikipedia
 
 from django.core.management.base import BaseCommand
@@ -16,10 +17,9 @@ class Command(BaseCommand):
 	
 	def handle(self, *args, **options):
 		
-		species_list = Species.objects.filter(
-			Q(wikidata_url__isnull=False) &
-			Q(wikipedia_description="")
-		)
+		species_list = Species.objects \
+			.exclude(wikidata_url="") \
+			.filter(wikipedia_description="")
 
 		self.stdout.write( str(len(species_list)) + " species found..." )
 	
@@ -29,7 +29,12 @@ class Command(BaseCommand):
 			self.stdout.write(f"{species.scientific_name} ({species.wikidata_url})")
 
 			wikipedia_id = urlparse( species.wikidata_url ).path.split("/")[-1]
-			page = wikipedia.page(wikipedia_id)
+			
+			try:
+				page = wikipedia.page(wikipedia_id)
+			except WikipediaException as we:
+				self.stderr.write("Error: There's a WikipediaException: " + str(we) )
+				continue
 
 			species.wikipedia_description = page.summary
 			species.save()

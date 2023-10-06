@@ -17,10 +17,10 @@ class Command(BaseCommand):
 	def handle(self, *args, **options):
 
 		species_list = Species.objects.filter(
-			Q(wikidata_url__isnull=True) | 
-			Q(wikipedia_url__isnull=True) |
-			Q(wikimedia_url__isnull=True) |
-			Q(wikimedia_photo_urls__isnull=True)
+			Q(wikidata_url="") | 
+			Q(wikipedia_url="") |
+			Q(wikimedia_url="") |
+			Q(wikimedia_photo_urls="")
 		)
 
 		self.stdout.write( str(len(species_list)) + " species found..." )
@@ -36,7 +36,7 @@ class Command(BaseCommand):
 				'query': query_template.format(scientific_name=species.scientific_name)
 			})
 			data = r.json()
-			self.stdout.write(str(data))
+			# self.stdout.write(str(data))
 			
 			result = self.collate_result( data )
 			
@@ -72,16 +72,17 @@ class Command(BaseCommand):
 	def collate_result(self, data):
 		
 		if "results" in data and \
-			"bindings" in data["results"] :
+			"bindings" in data["results"] and \
+			len(data["results"]["bindings"]):
 			
 			bidding = data["results"]["bindings"][0]
 			results = {
-				"wikidata": bidding["wikidata"]["value"],
-				"wikipedia": bidding["wikipedia"]["value"],
-				"wikimedia": bidding["wikimedia"]["value"],
+				"wikidata": bidding["wikidata"]["value"] if "wikidata" in bidding else "",
+				"wikipedia": bidding["wikipedia"]["value"] if "wikipedia" in bidding else "",
+				"wikimedia": bidding["wikimedia"]["value"] if "wikimedia" in bidding else "",
 				"wikimedia_photos" : [
 					self.adjust_photo_urls(bidding["wikimedia_photos"]["value"])
-				]
+				] if "wikimedia_photos" in bidding else [],
 			}
 			
 			for bidding in data["results"]["bindings"][1:]:
