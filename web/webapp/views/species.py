@@ -1,23 +1,14 @@
 from django.shortcuts import render
 from django.http import Http404
-from django.db.models import Q
+from django.db.models import Q, Count
 
 from ..models import Species, Detection
 
 
 def entire( request ):
 
-	# Todo: Make this more efficient
 	species_list = Species.objects.all().order_by("common_name")
-	detection_list = Detection.objects.all()
-
-	detections_by_species_id = count_detections_by_species_id(detection_list)
-
-	for s in species_list:
-		try:
-			s.detection_count = detections_by_species_id[s.id]
-		except KeyError:
-			s.detection_count = 0
+	species_by_detection(Detection.objects.all(), species_list)
 
 	context = {
 		"species_list": species_list,
@@ -53,10 +44,8 @@ def search(request):
 			.order_by("common_name")
 
 		detections = Detection.objects.filter(species__in=[s.id for s in species_found])
-		
-		detections_by_species_id = count_detections_by_species_id(detections)
-		for s in species_found:
-			s.detection_count = detections_by_species_id[s.id]
+
+		species_by_detection(detections, species_found)
 
 		context = {
 			'query': search_query,
@@ -66,15 +55,15 @@ def search(request):
 	return render(request, 'species/search.html', context)
 
 
-
-def count_detections_by_species_id( detection_list ) :
-
-	species_ids = {}
-
-	for d in detection_list :
+def species_by_detection(detections, species_list):
+	
+	detections_per_species = detections.values("species").annotate(count=Count("species"))
+	
+	species_by_detections = { dps["species"] : dps["count"] for dps in detections_per_species }
+	for s in species_list:
 		try:
-			species_ids[d.species.id] += 1
+			s.detection_count = species_by_detections[s.id]
 		except KeyError:
-			species_ids[d.species.id] = 1
+			s.detection_count = 0
 
-	return species_ids
+
