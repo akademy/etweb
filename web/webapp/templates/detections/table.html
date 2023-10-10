@@ -11,7 +11,7 @@
 	<tbody>
 	{% for detection in detection_list %}
 		<tr>
-			<td><a href="/detections/{{ detection.id }}/">{{ detection.date }}</a></td>
+			<td><a href="/detections/{{ detection.id }}/">{{ detection.date | date:"j F Y, H:i\h" }}</a></td>
 			{% if not hide_species %}
 				<td><a href="/species/{{ detection.species.id }}/">{{ detection.species.common_name }}</a> &nbsp; ({{ detection.species.scientific_name }})</td>
 			{% endif %}

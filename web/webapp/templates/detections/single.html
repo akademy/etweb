@@ -29,7 +29,7 @@
 				<dt>Date</dt>
 					<dd>{{ detection.date | date:"jS F, Y" }}</dd>
 				<dt>Time</dt>
-					<dd>{{ detection.date | date:"G:i:s" }}</dd>
+					<dd>{{ detection.date | date:"H:i:s (A)" }}</dd>
 				<dt>Species detected</dt>
 					<dd><a href="/species/{{ detection.species.id }}/">{{ detection.species.common_name }}</a> ({{ detection.species.scientific_name }})</dd>
 				<dt>Confidence</dt>

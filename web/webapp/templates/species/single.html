@@ -36,7 +36,7 @@
 					<dd>{{ species.scientific_name }}</dd>
 
 				<dt>Detected</dt>
-					<dd>Detected <a href="#detections">{{ detections|length }} time{{ detections|pluralize }}</a>.</dd>
+					<dd>Detected <a href="#detections">{{ species.detection_count }} time{{ species.detection_count|pluralize }}</a>; an average confidence of {{ species.average_confidence | floatformat:4 }}.</dd>
 			
 				{% if species.description or species.wikipedia_description %}
 					<dt>Description</dt>

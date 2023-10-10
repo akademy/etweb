@@ -1,7 +1,13 @@
 {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/dragtable.mod.min.css" /> #}
 
 <table id="lister-table">
-	<thead><td>Common Name</td><td>Scientific Name</td><td>Description</td><td>Detection Count</td></thead>
+	<thead>
+		<td>Common Name</td>
+		<td>Scientific Name</td>
+		<td>Description</td>
+		<td>Detection Count</td>
+		<td>Average Confidence</td>
+	</thead>
 	<tbody>
 	{% for species in species_list %}
 		<tr>
@@ -13,6 +19,7 @@
 				<td>{{ species.wikipedia_description | truncatechars:100 }}</td>
 			{% endif %}
 			<td>{{ species.detection_count }}</td>
+			<td>{{ species.average_confidence | floatformat:4 }}</td>
 		</tr>
 	{% endfor %}
 	</tbody>
