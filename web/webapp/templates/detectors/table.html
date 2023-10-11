@@ -24,17 +24,21 @@
 
 <script>
 	(function tableSorter() {
-		let script = document.createElement('script');
-		script.addEventListener('load', (event) => {
-			// TableSorter from https://mottie.github.io/tablesorter/docs/
-			$("#lister-table").tablesorter({
-				//theme : 'bootstrap',
-			});
+		let scripts = [
+			'https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js'
+		];
+
+		let promises = [];
+		scripts.forEach(function (url) {
+			promises.push(loadScript(url));
 		});
 
-		// load the script file
-		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js';
-		document.body.appendChild(script);
+		Promise.all(promises)
+			.then(function () {
+				// TableSorter from https://mottie.github.io/tablesorter/docs/
+				$("#lister-table").tablesorter();
+			}).catch(function (script) {
+			console.log(script + ' failed to load');
+		});
 	})();
-	
 </script>

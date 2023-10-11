@@ -19,6 +19,17 @@
 	<script src="{{ STATIC_PREFIX }}js/jquery.slidertron.min.js"></script>
 	<script src="{{ STATIC_PREFIX }}js/skel.all.min.js"></script>
 	<script src="{{ STATIC_PREFIX }}js/init.min.js"></script>
+	<script>
+		function loadScript(url, asy, d) {
+			d = document; return new Promise(function(res, rej) {
+				let s = d.createElement('script');
+				s.onload = function() { res(url); };
+				s.onerror = function() { rej(url); };
+				s.async = asy; s.src = url;
+				d.body.appendChild(s);
+			});
+		}
+	</script>
 
 	<noscript>
 		<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/style-xlarge.css" />

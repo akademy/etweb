@@ -1,5 +1,8 @@
 
-Django == 4.2.5
-mysqlclient == 2.2.0
-tomli==2.0.1
-wikipedia==1.4.0
+django                == 4.2.5
+django-mathfilters    == 1.0.0
+
+mysqlclient           == 2.2.0
+tomli                 == 2.0.1
+
+wikipedia             == 1.4.0

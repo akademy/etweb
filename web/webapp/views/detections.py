@@ -4,7 +4,7 @@ from django.db.models import Q
 
 from ..models import Detection
 
-MAX_RETURN = 1000
+MAX_RETURN = 500
 
 
 def entire( request ):
