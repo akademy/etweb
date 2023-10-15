@@ -2,12 +2,15 @@
 
 <table id="lister-table">
 	<thead>
-		<td>Date and Time</td>
-		{% if not hide_species %}
-			<td>Species detected</td>
-		{% endif %}
-		<td>Confidence</td>
+		<tr>
+			<td>Date and Time</td>
+			{% if not hide_species %}
+				<td>Species detected</td>
+			{% endif %}
+			<td>Confidence</td>
+		</tr>
 	</thead>
+
 	<tbody>
 	{% for detection in detection_list %}
 		<tr>
@@ -20,26 +23,5 @@
 	{% endfor %}
 	</tbody>
 </table>
-<p><small style="text-align: right">You can double-click the headings to sort the columns.</small></p>
 
-<script>
-	(function tableSorter() {
-		let scripts = [
-			'https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js'
-		];
-
-		let promises = [];
-		scripts.forEach(function (url) {
-			promises.push(loadScript(url));
-		});
-
-		Promise.all(promises)
-			.then(function () {
-				// TableSorter from https://mottie.github.io/tablesorter/docs/
-				$("#lister-table").tablesorter();
-			}).catch(function (script) {
-			console.log(script + ' failed to load');
-		});
-	})();
-	
-</script>
+{% include "extras/tablecode.html" %}

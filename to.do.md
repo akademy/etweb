@@ -3,15 +3,14 @@
 - should be able to search Species by type (bird, insect, etc)
 - Index everything
 - Include a model to hold a dataset? And piece of data? Could reference it in Analysis and Detection
-- bring table Javascript into one file 
 
 # Future
 - Should be able to search Species by Position, and groups of positions (or areas). But only one currently.
-	- Perhaps a screen tp select multiple positions, that then is persistant across all other screens.
+	- Perhaps a screen to select multiple positions, that then is persistent across all other screens.
 - Include historical weather
-	- Weather data is collected at the ET Site.
+	- (Weather data is collected at the ET Site).
 - Pagination
-	- Everything in database is currently returned... not too much of a problem yet...
+	- Pages are restricted to 1000 returns. No next or previous.
 - Work out timezone from Position. Currently it is assumed "Europe/London"
 
 ## Done
@@ -23,4 +22,5 @@
 	- ~~Also add a longer description on the about page~~
 - ~~Pull data from WikiData~~
 - ~~Position should show list of detectors~~
+- ~~Bring table Javascript into one file~~
 

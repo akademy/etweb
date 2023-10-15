@@ -1,7 +1,14 @@
 {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/dragtable.mod.min.css" /> #}
 
 <table id="lister-table">
-	<thead><td>Position</td><td>Description</td><td>Lat/Long</td></thead>
+	<thead>
+		<tr>
+			<td>Position</td>
+			<td>Description</td>
+			<td>Lat/Long</td>
+		</tr>
+	</thead>
+
 	<tbody>
 	{% for position in position_list %}
 		<tr>
@@ -12,25 +19,5 @@
 	{% endfor %}
 	</tbody>
 </table>
-<p><small style="text-align: right">You can double-click the headings to sort the columns.</small></p>
 
-<script>
-	(function tableSorter() {
-		let scripts = [
-			'https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js'
-		];
-
-		let promises = [];
-		scripts.forEach(function (url) {
-			promises.push(loadScript(url));
-		});
-
-		Promise.all(promises)
-			.then(function () {
-				// TableSorter from https://mottie.github.io/tablesorter/docs/
-				$("#lister-table").tablesorter();
-			}).catch(function (script) {
-			console.log(script + ' failed to load');
-		});
-	})();
-</script>
+{% include "extras/tablecode.html" %}

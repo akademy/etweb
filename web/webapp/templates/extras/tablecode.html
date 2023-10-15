@@ -1,0 +1,14 @@
+<p id="click-headers" class="small" style="text-align:right;"></p>
+<script>
+	(function tableSorter() {
+		loadScriptsWithPromise( [
+				'https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js'
+			],
+			function () {
+				// TableSorter from https://mottie.github.io/tablesorter/docs/
+				$("#lister-table").tablesorter();
+				$("#click-headers").text("(You can double-click the table headings to sort the columns)")
+			}
+		)
+	})();
+</script>

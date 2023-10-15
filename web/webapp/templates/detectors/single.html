@@ -40,6 +40,7 @@
 
 		<section>
 			<h3>Chart of detections per day</h3>
+			<p id="loading-chart"></p>
 			<canvas id="chart" width="600" height="{{ detections_per_week|mul:20 }}"></canvas>
 		</section>
 		
@@ -63,81 +64,80 @@
 {% endblock content %}
 
 {% block foot %}
-	<script>
-
+	<script>	
 		(function createChart() {
-			let scripts = [
-				'https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js',
-				'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js'
-			];
-			// save all Promises as array
-			let promises = [];
-			scripts.forEach(function (url) {
-				promises.push(loadScript(url));
-			});
+			$("#loading-chart").text("Loading chart...")
+			loadScriptsWithPromise( [
+				// This one MUST be fully loaded BEFORE the next one
+				// It will NOT working loading them at the same time.
+				'https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js'
+			],
+			function () {
+				loadScriptsWithPromise([
+						'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js'
+					],
+					function () {
+						let ctx = document.getElementById("chart").getContext("2d");
+						const data = {
+							datasets: [{
+								label: "Detection number per week",
+								backgroundColor: "#79C8AE",
+								borderColor: "#419076",
+								data: [
+									{% for dpw in detections_per_day %}
+										{
+											x: "{{ dpw.year }}-{{ dpw.month|stringformat:"02d" }}-{{ dpw.day|stringformat:"02d" }}",
+											y: {{ dpw.count }}
+										},
+									{% endfor %}
+								]
+							}]
+						};
 
-			Promise.all(promises)
-				.then(function () {
-					let ctx = document.getElementById("chart").getContext("2d");
-
-					const data = {
-						datasets: [{
-							label: "Detection number per week",
-							backgroundColor: "#79C8AE",
-							borderColor: "#419076",
-							data: [
-								{% for dpw in detections_per_day %}
-									{
-										x: "{{ dpw.year }}-{{ dpw.month|stringformat:"02d" }}-{{ dpw.day|stringformat:"02d" }}",
-										y: {{ dpw.count }}
-									},
-								{% endfor %}
-							]
-						}]
-					};
-
-					let chart = new Chart(ctx, {
-						type: "bar",
-						data: data,
-						options: {
-							responsive: true,
-							interaction: {
-								mode: 'nearest',
-							},
-							scales: {
-								x: {
-									type: 'time',
-									//time: {
-									//	unit: 'week'
-									//},
-									display: true,
-									title: {
+						console.log("createchart");
+						new Chart(ctx, {
+							type: "bar",
+							data: data,
+							options: {
+								responsive: true,
+								interaction: {
+									mode: 'nearest',
+								},
+								scales: {
+									x: {
+										type: 'time',
+										//time: {
+										//	unit: 'week'
+										//},
 										display: true,
-										text: 'Date'
+										title: {
+											display: true,
+											text: 'Date'
+										},
+										ticks: {
+											autoSkip: true,
+											major: {
+												enabled: true
+											},
+										}
 									},
-									ticks: {
-										autoSkip: true,
-										major: {
-											enabled: true
+									y: {
+										display: true,
+										title: {
+											display: true,
+											text: 'Detections'
 										},
 									}
 								},
-								y: {
-									display: true,
-									title: {
-										display: true,
-										text: 'Detections'
-									},
+								plugins: {
+									legend: null,
 								}
-							},
-							plugins: {
-								legend: null,
 							}
-						}
-					});
-				}).catch(function (script) {
-				console.log(script + ' failed to load');
-			});
+						});
+						$("#loading-chart").text("")
+					});  // loadScriptsWithPromise 2
+			})  // loadScriptsWithPromise 1
+			
 		})();
 	</script>
 {% endblock foot %}

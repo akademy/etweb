@@ -20,13 +20,36 @@
 	<script src="{{ STATIC_PREFIX }}js/skel.all.min.js"></script>
 	<script src="{{ STATIC_PREFIX }}js/init.min.js"></script>
 	<script>
-		function loadScript(url, asy, d) {
-			d = document; return new Promise(function(res, rej) {
-				let s = d.createElement('script');
-				s.onload = function() { res(url); };
-				s.onerror = function() { rej(url); };
-				s.async = asy; s.src = url;
-				d.body.appendChild(s);
+		let static_prefix = "{{ STATIC_PREFIX }}";
+		function loadScriptsWithPromise(urls, fthen, fcatch) {
+			let promises = [], scripts = [], d = document;
+			
+			urls.forEach(function (url) {
+				promises.push(
+					new Promise(function(res, rej) {
+						let s = document.createElement('script');
+						s.async = true;
+						s.onload = function () {
+							setTimeout(() => res(url), 100);
+						};
+						s.onerror = function () { rej(url); };
+						s.url = url;
+						scripts.push(s)
+					})
+				)
+			});
+			
+			Promise.all(promises)
+				.then(fthen)
+				.catch(function (script) {
+					console.log(script + ' failed to load');
+					if( fcatch ) { fcatch(script) }
+				})
+
+			// trigger
+			scripts.forEach(function (script) {
+				script.src = script.url;
+				document.body.appendChild(script);
 			});
 		}
 	</script>
