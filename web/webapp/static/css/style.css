@@ -1383,6 +1383,19 @@
 	background: #ddead8;
 }
 
+#stats .feature:before {
+	color: #648665;
+	background-color: #f1f1f1;
+	left: auto;
+}
+#stats .feature p {
+	font-size: 36px;
+	font-weight: bold;
+}
+#stats .feature h3, #stats .feature p {
+	margin-left: 94px;
+}
+
 p.small, small {
 	font-size: small;
 }
@@ -1398,9 +1411,27 @@ dl dd { margin-left: 40px; padding-bottom: 10px }
 
 dl dt:nth-child(1) { font-size: larger }
 dl dd:nth-child(2) { font-size: larger; padding-bottom: 20px }
+/* end: single page definitions */
+
+
+/* explore page */
+#explore {
+	list-style: none;
+	margin-left: 0
+}
+#explore li {
+	font-size: x-large;
+	padding-bottom: 20px;
+}
+#explore li i {
+	display: inline-block;
+	margin-right: 32px;
+}
+#explore li span {
+	font-weight: bold;
+}
+/* end: explore page */
 
 #footer a {
 	color:inherit;
 }
-
-

@@ -8,12 +8,58 @@
 	<section id="banner">
 		<div class="inner">
 			<h2>Wildlife Monitoring</h2>
-			<p>A searchable list of species located at a monitoring stations <br/>(currently one near Cliften Hampden, Oxfordshire, UK)</p>
+			<p>A searchable list of species detected at monitoring stations <br/><small>(currently only one, near Clifton Hampden, Oxfordshire, UK)</small></p>
 			<ul class="actions">
+				<li><a href="/about/" class="button big scrolly">About</a></li>
 				<li><a href="/explore/" class="button big scrolly">Explore</a></li>
 				<li><a href="/species/" class="button big scrolly">Species</a></li>
 			</ul>
 		</div>
 	</section>
 
+	<section id="stats" class="wrapper style1">
+		<div class="container">
+			<div class="row uniform">
+				<div class="4u 6u(2) 12u$(3)">
+					<section class="feature fa-binoculars">
+						<h3>Monitoring stations</h3>
+						<p>{{ position_number | floatformat:"g" }}</p>
+					</section>
+				</div>
+				<div class="4u 6u$(2) 12u$(3)">
+					<section class="feature fa-paw">{# fa-magnifying-glass-location #}
+						<h3>Detections</h3>
+						<p>{{ detection_number | floatformat:"g" }}</p>
+					</section>
+				</div>
+				<div class="4u$ 6u(2) 12u$(3)">
+					<section class="feature fa-bug">
+						<h3>Species</h3>
+						<p>{{ species_number | floatformat:"g" }}</p>
+					</section>
+				</div>
+				<!--
+				<div class="4u 6u$(2) 12u$(3)">
+					<section class="feature fa-desktop">
+						<h3>Praesent lacinia</h3>
+						<p>Ipsum dolor tempus commodo amet sed accumsan et adipiscing blandit porttitor sed faucibus.</p>
+					</section>
+				</div>
+				<div class="4u 6u(2) 12u$(3)">
+					<section class="feature fa-camera-retro">
+						<h3>Morbi semper</h3>
+						<p>Ipsum dolor tempus commodo amet sed accumsan et adipiscing blandit porttitor sed faucibus.</p>
+					</section>
+				</div>
+				<div class="4u$ 6u$(2) 12u$(3)">
+					<section class="feature fa-cog">
+						<h3>Arcu consequat</h3>
+						<p>Ipsum dolor tempus commodo amet sed accumsan et adipiscing blandit porttitor sed faucibus.</p>
+					</section>
+				</div>
+				-->
+			</div>
+		</div>
+	</section>
+	
 {% endblock main %}
