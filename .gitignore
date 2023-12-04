@@ -2,3 +2,6 @@
 /.idea/
 
 ./definitions.py
+./volumes/*
+
+docker-compose.env

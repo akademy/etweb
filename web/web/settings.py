@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-85v(bp#fpc*jetsk3b=d4s$fd$5yb@v&ky%i7*-_xdtzouvud*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'etd',
+        'NAME': os.environ.get('MARIADB_DATABASE'),
         "USER": "root",
-        "PASSWORD": "example",
-        "HOST": "127.0.0.1",
+        "PASSWORD": os.environ.get('MARIADB_ROOT_PASSWORD'),
+        "HOST": "db",
         "PORT": "3306",
     }
 }

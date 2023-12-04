@@ -17,3 +17,11 @@ python manage.py dumpdata -o wm.database.dummy.json --exclude=auth --exclude=con
 ### import
 python manage.py migrate
 python manage.py loaddata "path/to/fixture/file"
+
+
+### initial set up database
+- create database "etd" (via env MARIADB_DATABASE)
+- docker-compose exec web /bin/bash
+	- python manage.py migrate
+	- python manage.py createsuperuser
+	- python manage.py loaddata wm.database.dummy.json
