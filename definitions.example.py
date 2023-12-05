@@ -1,3 +1,0 @@
-DATABASE_USER = "user"
-DATABASE_PASSWORD = "example"
-DATABASE_NAME = "etd"

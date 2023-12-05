@@ -1,7 +1,5 @@
 /venv/
 /.idea/
 
-./definitions.py
-./volumes/*
-
+/volumes/mariadb/
 docker-compose.env
