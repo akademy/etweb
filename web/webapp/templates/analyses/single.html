@@ -28,10 +28,10 @@
 				<dt>Name</dt>
 					<dd>{{ analysis.name }}</dd>
 				<dt>Description</dt>
-					<dd>{{ analysis.description }}</dd>
+					<dd>{{ analysis.description | linebreaks }}</dd>
 				<dt>URL</dt>
 					<dd><a href="{{ analysis.url }}" target="_blank">{{ analysis.url }}</a></dd>
-				<dt>uuid</dt>
+				<dt>Unique ID</dt>
 					<dd>{{ analysis.uuid }}</dd>
 				<br/>
 				<dt>Using Detector</dt>

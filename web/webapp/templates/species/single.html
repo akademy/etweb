@@ -42,9 +42,9 @@
 					<dt>Description</dt>
 					<dd>
 						{% if species.description %}
-							{{ species.description }}
+							{{ species.description | linebreaks }}
 						{% else %}
-							{{ species.wikipedia_description }}
+							{{ species.wikipedia_description | linebreaks }}
 							<small style="display:block;text-align: right;">(Description from <a href="{{ species.wikipedia_url }}">Wikipedia</a>)</small>
 						{% endif %}
 					</dd>
@@ -68,7 +68,7 @@
 					</dd>
 				{% endif %}
 
-				<dt>UUID</dt>
+				<dt>Unique ID</dt>
 					<dd>{{ species.uuid }}</dd>
 			
 				{% if species.wikidata_url %}
