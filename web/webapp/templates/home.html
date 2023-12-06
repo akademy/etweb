@@ -20,44 +20,34 @@
 	<section id="stats" class="wrapper style1">
 		<div class="container">
 			<div class="row uniform">
+				
 				<div class="4u 6u(2) 12u$(3)">
 					<section class="feature fa-map-marker">
-						<h3>Monitoring stations</h3>
-						<p>{{ position_number | floatformat:"g" }}</p>
+						<a href="/positions/">
+							<h3>Monitoring stations</h3>
+							<p>{{ position_number | floatformat:"g" }}</p>
+						</a>
 					</section>
 				</div>
+
 				<div class="4u 6u$(2) 12u$(3)">
-					<section class="feature fa-paw">{# fa-magnifying-glass-location #}
-						<h3>Detections</h3>
-						<p>{{ detection_number | floatformat:"g" }}</p>
+					<section class="feature fa-paw">
+						<a href="/detections/">
+							<h3>Detections</h3>
+							<p>{{ detection_number | floatformat:"g" }}</p>
+						</a>
 					</section>
 				</div>
+				
 				<div class="4u$ 6u(2) 12u$(3)">
 					<section class="feature fa-bug">
-						<h3>Species</h3>
-						<p>{{ species_number | floatformat:"g" }}</p>
+						<a href="/species/">
+							<h3>Species</h3>
+							<p>{{ species_number | floatformat:"g" }}</p>
+						</a>
 					</section>
 				</div>
-				<!--
-				<div class="4u 6u$(2) 12u$(3)">
-					<section class="feature fa-desktop">
-						<h3>Praesent lacinia</h3>
-						<p>Ipsum dolor tempus commodo amet sed accumsan et adipiscing blandit porttitor sed faucibus.</p>
-					</section>
-				</div>
-				<div class="4u 6u(2) 12u$(3)">
-					<section class="feature fa-camera-retro">
-						<h3>Morbi semper</h3>
-						<p>Ipsum dolor tempus commodo amet sed accumsan et adipiscing blandit porttitor sed faucibus.</p>
-					</section>
-				</div>
-				<div class="4u$ 6u$(2) 12u$(3)">
-					<section class="feature fa-cog">
-						<h3>Arcu consequat</h3>
-						<p>Ipsum dolor tempus commodo amet sed accumsan et adipiscing blandit porttitor sed faucibus.</p>
-					</section>
-				</div>
-				-->
+
 			</div>
 		</div>
 	</section>

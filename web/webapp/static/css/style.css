@@ -1379,6 +1379,9 @@
 
 /****** Wildlife Monitor *******/
 
+a:hover {
+	color: #006b1b !important;
+}
 .wrapper.style1 {
 	background: #ddead8;
 }
@@ -1392,8 +1395,14 @@
 	font-size: 36px;
 	font-weight: bold;
 }
-#stats .feature h3, #stats .feature p {
+#stats .feature h3,
+#stats .feature p {
 	margin-left: 94px;
+}
+
+#stats .feature a {
+	border-bottom: 0;
+	color: #646464;
 }
 
 p.small, small {
