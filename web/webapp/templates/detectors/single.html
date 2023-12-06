@@ -38,24 +38,27 @@
 		
 		</section>
 
-		<section>
-			<h3>Chart of detections per day</h3>
-			<p id="loading-chart"></p>
-			<canvas id="chart" width="600" height="{{ detections_per_week|mul:20 }}"></canvas>
-		</section>
-		
-		<section>
-			<h3>Table of detections per week</h3>
-			<table>
-				<thead>
-				<tr><td>Week and year</td><td>Count</td></tr>
-				</thead>
-				{% for dpw in detections_per_week%}
-					<tr><td>Week {{ dpw.week }}, {{ dpw.year }}</td><td>{{ dpw.count }}</td></tr>
-				{% endfor %}
-			</table>
-		</section>
-		
+		{% if detections_per_week %}
+			<section>
+				<h3>Chart of detections per day</h3>
+				<p id="loading-chart"></p>
+				<canvas id="chart" width="600" height="{{ detections_per_week|mul:20 }}"></canvas>
+			</section>
+			
+			<section>
+				<h3>Table of detections per week</h3>
+				<table>
+					<thead>
+					<tr><td>Week and year</td><td>Count</td></tr>
+					</thead>
+					{% for dpw in detections_per_week%}
+						<tr><td>Week {{ dpw.week }}, {{ dpw.year }}</td><td>{{ dpw.count }}</td></tr>
+					{% endfor %}
+				</table>
+			</section>
+		{% else %}
+			<p>No detections logged for this detector yet.</p>
+		{% endif %}
 		
 	{% else %}
 		{# This should never be used as it should be a 404 #}
