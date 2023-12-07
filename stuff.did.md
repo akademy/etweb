@@ -25,7 +25,9 @@ python manage.py loaddata "path/to/fixture/file"
 - docker-compose exec web /bin/bash
 	- python manage.py migrate
 	- python manage.py createsuperuser
-	- python manage.py loaddata wm.database.dummy.json
+	- python manage.py loaddata wm.database.initial.json
+	
+Could instead load some dummy data with wm.database.dummy.json
 
 ## indexing
 
