@@ -24,7 +24,8 @@ services:
     restart: "on-failure"
     ports:
       - 8000:8000
-    command: python ./web/manage.py runserver 0.0.0.0:8000
+    #command: python ./web/manage.py runserver 0.0.0.0:8000
+    command: uwsgi --http :8000 --chdir /home/app/server/web --module web.wsgi
     links:
       - db
     depends_on:
