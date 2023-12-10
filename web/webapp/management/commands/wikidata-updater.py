@@ -23,13 +23,15 @@ class Command(BaseCommand):
 			Q(wikimedia_photo_urls="")
 		)
 
-		self.stdout.write( str(len(species_list)) + " species found..." )
+		total = len(species_list)
+		count = 1
+		self.stdout.write( f"{total} species found..." )
 		
 		query_template = self.sparql_wikidata_template()
 		for species in species_list:
 
 			self.stdout.write()
-			self.stdout.write(species.scientific_name)
+			self.stdout.write(f"({count}/{total}) " + species.scientific_name)
 
 			r = requests.get(Command.WIKIDATA_URL, params={
 				'format': 'json', 
@@ -67,6 +69,7 @@ class Command(BaseCommand):
 				self.stdout.write("wikimedia_url: " + species.wikimedia_url)
 				self.stdout.write("wikimedia_photo_urls: " + str(species.wikimedia_photo_urls) )
 			
+			count += 1	
 			time.sleep(Command.PAUSE_TIME_SECONDS)
 	
 	def collate_result(self, data):

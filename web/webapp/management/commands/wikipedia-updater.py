@@ -21,12 +21,14 @@ class Command(BaseCommand):
 			.exclude(wikidata_url="") \
 			.filter(wikipedia_description="")
 
-		self.stdout.write( str(len(species_list)) + " species found..." )
+		total = len(species_list)
+		count = 1
+		self.stdout.write( f"{total} species found..." )
 	
 		for species in species_list:
 
 			self.stdout.write()
-			self.stdout.write(f"{species.scientific_name} ({species.wikidata_url})")
+			self.stdout.write(f"({count}/{total}) {species.scientific_name} ({species.wikidata_url})")
 
 			wikipedia_id = urlparse( species.wikidata_url ).path.split("/")[-1]
 			
@@ -39,6 +41,7 @@ class Command(BaseCommand):
 			species.wikipedia_description = page.summary
 			species.save()
 
+			count += 1
 			time.sleep(Command.PAUSE_TIME_SECONDS)
 		
 			
