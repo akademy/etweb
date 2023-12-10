@@ -1386,20 +1386,21 @@ a:hover {
 	background: #ddead8;
 }
 
+
+#banner {
+	/* darken image */
+	background-color: #5c5c5c;
+	background-blend-mode: multiply;
+}
+
 #stats .feature:before {
 	color: #648665;
 	background-color: #f1f1f1;
-	left: auto;
 }
 #stats .feature p {
 	font-size: 36px;
 	font-weight: bold;
 }
-#stats .feature h3,
-#stats .feature p {
-	margin-left: 94px;
-}
-
 #stats .feature a {
 	border-bottom: 0;
 	color: #646464;
