@@ -11,13 +11,21 @@ class BTO(Indexer):
 	
 	def index_data(self, position, detector, analysis, file_path_list):
 		
+		file_count = 1
+		file_total = len(file_path_list)
+		
 		for path in file_path_list:
-
+			self.out(f"({file_count}/{file_total}) Processing {path}")
 			species_dict = {}
+			
 			with open(path, newline='') as csv_file:
 				reader = csv.DictReader(csv_file)
+				row_count = 1
 				for row in reader:
 
+					if row_count % 500 == 0 :
+						self.out(f"- {row_count} rows.")
+						
 					if row["SPECIES"] in ["bird", "No ID"] :
 						continue
 
@@ -61,6 +69,9 @@ class BTO(Indexer):
 							analysis=analysis,
 							confidence=confidence
 						)
+				
+					row_count += 1
+			file_count += 1
 
 		return True
 		

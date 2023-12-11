@@ -11,7 +11,11 @@ class BirdNet(Indexer):
 
 	def index_data(self, position, detector, analysis, file_path_list):
 		
+		file_total = len(file_path_list)
+		file_count = 1
 		for path in file_path_list:
+			
+			self.out(f"({file_count}/{file_total}) Processing {path}")
 
 			try:
 				recording_time = self._datetime_from_filename(path)
@@ -56,7 +60,8 @@ class BirdNet(Indexer):
 							analysis=analysis,
 							confidence=confidence
 						)
-
+			file_count += 1
+			
 		return True
 
 	
