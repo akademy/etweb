@@ -35,14 +35,16 @@
 				<dt>Confidence</dt>
 					<dd>
 						{{ detection.confidence }}
-						{% if detection.confidence < 0.5 %}
-							(low)
+						{% if detection.confidence < 0.5 %}{# THis may not be used as low values are not normally included in the database #}
+							(poor)
 						{% elif detection.confidence < 0.7 %}
-							(fair)
-						{% elif detection.confidence < 0.9 %}
+							(OK)
+						{% elif detection.confidence < 0.8 %}
 							(good)
-						{% else %}
+						{% elif detection.confidence < 0.9 %}
 							(high)
+						{% else %}{# Higher than 0.9 #}
+							(very high)
 						{% endif %}
 					</dd>
 				<dt>Analysis by</dt>

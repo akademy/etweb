@@ -1382,6 +1382,11 @@
 a:hover {
 	color: #006b1b !important;
 }
+table {
+	overflow-x: auto;
+	display: block;	
+}
+
 .wrapper.style1 {
 	background: #ddead8;
 }

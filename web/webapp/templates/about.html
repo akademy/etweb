@@ -45,21 +45,31 @@
 	<p>
 		The five different datasets included in the website - 
 		Analyses, Detections, Detectors, Positions and Species - are each described below. But in simple terms:
-		<ul>
-			<li>A <b>Position</b> (i.e. a monitoring station) has several <b>Detectors</b> (e.g. a camera).</li>
-			<li>Each <b>Detector</b> captures a specific kind of data (e.g. a camera captures a photo).</li>
-			<li>An <b>Analyses</b> scans the data to see if it can find a <b>Species</b>. (There's a bird in the photo).</li>
-			<li>A <b>Detection</b> records when a species was found. (On Monday, there was a Blue Tit at the monitoring station!).</li>
-		</ul>
+	</p>
+	<ul>
+		<li>A <b>Position</b> (i.e. a monitoring station) has several <b>Detectors</b> (e.g. a camera).</li>
+		<li>Each <b>Detector</b> captures a specific kind of data (e.g. a camera captures a photo).</li>
+		<li>An <b>Analyses</b> scans the data to see if it can find a <b>Species</b>. (There's a bird in the photo).</li>
+		<li>A <b>Detection</b> records when a species was found. (On Monday, there was a Blue Tit at the monitoring station!).</li>
+	</ul>
+	
+	<h3>Confidence ratings</h3>
+	<p>
+		Several of the <b>Analyses</b> are AI based. It is typical for these types of processes to include "confidence ratings".
+		These show "how sure" (or confident) a process is that it made the right determination when selecting a Species.
+		You will find them attached to individual <b>Detections</b> and averaged for each <b>Species</b>.
+	</p>
+	<p>
+		Confidence ratings take a value between 0.0 and 1.0. A higher value means a higher confidence. 
+		This website only includes detections that are higher than 0.5. You can think of a 
+		value between 0.5 and 0.7 as being <i>OK</i>, a value between 0.7 to 0.8 as being <i>Good</i>,
+		a value 0.8 to 0.9 as being <i>High</i>, and a value between 0.9 and 1.0 as being <i>Very High</i>.
 	</p>
 	
 	<h3>Analyses dataset</h3>
 	<p>This dataset includes processes that have been run to identify a <strong>Species</strong>. 
 		This might be a simple piece of software, an AI trained to identify a species from a sound, or in a special case, a human.
 	</p>
-	<p>In the case of AI based analyses, these will typically include "confidence estimates", and these show "how sure"
-		a process is that it made the right determination. On this website only confidence higher than 0.5 are 
-		included (the confidence scale got from 0.0 to 1.0).</p>
 	
 	<p>An Analyses is designed to run on a particular <strong>Detector</strong>.
 	</p>
@@ -77,7 +87,7 @@
 	<h3>Detectors dataset</h3>
 	<p>
 		Detectors are the physical devices used to capture a piece of data. A  typical example would be a camera or 
-		or a microphone. They are located at a certain <strong>Position</strong>.The data each collects is run
+		or a microphone. They are located at a certain <strong>Position</strong>. The data each collects is run
 		through a certain <strong>Analyses</strong>. 
 	</p>
 	<p>See a list of detectors <a href="/detectors">here</a>.</p>
@@ -98,6 +108,13 @@
 		These are all the species detected. Bats, Birds and Bugs being the main ones. For instance, a 
 		<a href="/species/48/"><i>Gray Wagtail</i></a> or a <a href="/species/6/"><i>Long-Eared Bat</i></a>.
 	</p>
+	
+	<p>
+		A species has a common (english) name, a scientific name, and in most cases, a description.
+		The "detection count" is the number of times the species was detected. The "average confidence" is the 
+		confidence taken from each of the individual detections.
+	</p>
+	
 	<p>See a list of species <a href="/species/">here</a>.</p>
 
 
